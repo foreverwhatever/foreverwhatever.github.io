@@ -1,0 +1,2 @@
+recursive-include . *.md
+recursive-exclude . _nbconvert.py
