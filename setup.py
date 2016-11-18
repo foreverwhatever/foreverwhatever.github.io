@@ -17,8 +17,8 @@ setuptools.setup(
     name="whatever-forever",
     version="0.0.1",
     author="Tony Fast",
-    author_email="tony.fast@bastille.io",
-    description="Data sources for my research",
+    author_email="tony.fast@gmail.io",
+    description="My python tools.",
     include_package_data=True,
     packages=setuptools.find_packages(),
     classifiers=[
