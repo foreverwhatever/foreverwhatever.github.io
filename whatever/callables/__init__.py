@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 from collections import OrderedDict
 from toolz.curried import flip, juxt, map, partial, pipe, valmap
@@ -13,57 +13,91 @@ __all__ = [
 ]
 
 
-# In[6]:
+# In[2]:
 
-class DictCallable(dict):
+class DictCallable(OrderedDict):
     def __call__(self, *args, **kwargs):
         return valmap(
-            lambda x: x(*args, **kwargs) if callable(x) else x, self
+            lambda x: 
+            x(*args, **kwargs) 
+            if callable(x) 
+            else x, 
+            self
         )
 
 
-# In[5]:
+# In[24]:
 
 class Condictional(OrderedDict):
     """First key to satisfy the key condition executes.
     """
-    def key(self, x, *args, **kwargs)->bool:
-        return x(*args, **kwargs)
+    def _condition(self, function, *args, **kwargs)->bool:
+        return function(*args, **kwargs)
 
-    def __init__(self, args=[], default=None, key=None):
-        super().__init__(args)
+    def __init__(self, *args, default=None, key=bool, **kwargs):
+        super().__init__(*args, **kwargs)
         self.default = default
-        if key:
-            self.key = key
+        self.key = key
 
     def __call__(self, *args, **kwargs):
         for key, value in self.items():
-            if self.key(key, *args, **kwargs):
-                return value(*args, **kwargs)
+            if self._condition(key, *args, **kwargs):
+                if callable(value):
+                    return value(*args, **kwargs)
+                return value
         if self.default:
             return self.default(*args, **kwargs)
         raise KeyError(
             "No conditions satisfied for types: " + args.__str__())
 
 
-# In[27]:
+# In[28]:
+
+# Condictional({
+#         lambda x: x>30: 20,
+#         lambda x: x<100: lambda x: x *2,
+#     })(31)
+
+
+# In[14]:
 
 class Dispatch(Condictional):
     """An object that provides multiple dispatch when it is called.
     """
-    def key(self, key, *args, **kwargs):
-        if not isinstance(key, Iterable):
-            key = tuple([key])
-        if len(args) == len(key):
-            return all(
-                isinstance(arg, types) for arg, types in zip(args, key)
-                if isinstance(types, Iterable) or types != Any
-            )
-        return False
+    def _condition(self, types, *args, **kwargs)->bool:
+        if not isinstance(types, Iterable):
+            types = tuple([types])
+        return pipe(
+            zip(args, types),
+            map(lambda arg: isinstance(*arg)),
+            all
+        )
 
-    def __init__(self, args=[], default=None):
-        super().__init__(args)
-        self.default = default
+
+# In[20]:
+
+class SetCallable(set):
+    def __call__(self, *args, **kwargs):
+#         if pipe(self, map(
+#                 partial(flip(isinstance), LambdaType)
+#         ), any):
+#             raise TypeError("Cannot interpolate a LambdaType.")
+        values = map(lambda x: x(*args, **kwargs), self)
+        return dict(zip(self, list(values)))
+
+
+# In[22]:
+
+# SetCallable({str.upper, len})('test')[str.upper]
+
+
+# In[ ]:
+
+class TupleCallable(tuple):
+    def __call__(self, *args, **kwargs):
+        return juxt(*self)(
+            *args, **kwargs
+        )
 
 
 # In[5]:
@@ -73,29 +107,4 @@ class ListCallable(list):
         return list(juxt(*self)(
             *args, **kwargs
         ))
-
-
-# In[6]:
-
-class SetCallable(set):
-    def __call__(self, *args, **kwargs):
-        if pipe(self, map(
-                partial(flip(isinstance), LambdaType)
-        ), any):
-            raise TypeError("Cannot interpolate a LambdaType.")
-
-        return pipe(
-            zip(
-                self, list(map(lambda x: x(*args, **kwargs), self))
-            ), list, dict
-        )
-
-
-# In[7]:
-
-class TupleCallable(tuple):
-    def __call__(self, *args, **kwargs):
-        return juxt(*self)(
-            *args, **kwargs
-        )
 
