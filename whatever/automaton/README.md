@@ -45,6 +45,23 @@ F(A=10, B=32).node
 
 
 ```python
+F = build(f, h)
+F(A=32, B=10).node
+```
+
+
+
+
+    {'A': {'value': 32},
+     'B': {'value': 10},
+     'f': {'func': <function __main__.f>, 'value': 32},
+     'g': {'func': <function __main__.g>, 'value': 42},
+     'h': {'func': <function __main__.h>, 'value': 1344}}
+
+
+
+
+```python
 import sklearn.datasets, sklearn.discriminant_analysis
 from whatever.harness import Harness
 ```
@@ -113,15 +130,16 @@ graph.node[transform_and_predict.__name__]['value'].sample(2)
   </thead>
   <tbody>
     <tr>
-      <th rowspan="2" valign="top">1</th>
-      <th>1</th>
-      <td>-0.795059</td>
-      <td>0.037019</td>
+      <th>0</th>
+      <th>0</th>
+      <td>7.925315</td>
+      <td>0.350700</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.881821</td>
-      <td>1.304642</td>
+      <th>1</th>
+      <td>-1.569909</td>
+      <td>-1.217893</td>
     </tr>
   </tbody>
 </table>

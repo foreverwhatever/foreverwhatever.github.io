@@ -82,43 +82,38 @@ def create_edges(G, nested_graph):
     return G
 
 
-# In[6]:
+# In[1]:
 
 def find_longest_path(start, end, G):
     """Find the longest path of functions.
     """
-    return pipe(
-        nx.all_simple_paths(G, start.__name__, end.__name__),
-        topk(1, key=len),
-        first,
-        map(compose(get('func'), G.node.__getitem__)),
-        list
-    )
+    return list(nx.all_simple_paths(G, start.__name__, end.__name__))
 
 
 # In[7]:
 
-def run(G, path, **kwargs):
+def run(G, paths, **kwargs):
     """Iterate through the path and execute the function.
     """
     G.add_nodes_from(kwargs)
     nx.set_node_attributes(G, 'value', None)
     nx.set_node_attributes(G, 'value', kwargs)
-    for function in path:
-        if G.node[function.__name__]['value']:
-            continue
-        params = pipe(
-            function,
-            _annotations_,
-            valmap(_name_),
-            valmap(G.node.__getitem__),
-            valmap(get('value'))
-        )
-        nx.set_node_attributes(
-            G, 'value', {
-                function.__name__: function(**params)
-            }
-        )
+    for path in paths:
+        for function in path:
+            if G.node[function]['value'] is None:
+                params = pipe(
+                    G.node[function]['func'],
+                    _annotations_,
+                    valmap(_name_),
+                    valmap(G.node.__getitem__),
+                    valmap(get('value'))
+                )
+                if not any(map(lambda x: x is None, params.values())):
+                    nx.set_node_attributes(
+                        G, 'value', {
+                            function: G.node[function]['func'](**params)
+                        }
+                    )
     return G
 
 
