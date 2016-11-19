@@ -9,7 +9,7 @@ from types import LambdaType
 from typing import Iterable, Any
 
 __all__ = [
-    'Dispatch', 'DictCallable', 'TupleCallable', 'ListCallable', 'SetCallable'
+    'dictf', 'difct', 'dispatch', 'listf', 'setf', 'tuplef'
 ]
 
 
@@ -24,6 +24,7 @@ class DictCallable(OrderedDict):
             else x, 
             self
         )
+dictf = DictCallable
 
 
 # In[24]:
@@ -46,9 +47,13 @@ class Condictional(OrderedDict):
                     return value(*args, **kwargs)
                 return value
         if self.default:
-            return self.default(*args, **kwargs)
+            if callable(self.default):
+                return self.default(*args, **kwargs)
+            return self.default
         raise KeyError(
             "No conditions satisfied for types: " + args.__str__())
+        
+difct = Condictional
 
 
 # In[28]:
@@ -72,18 +77,17 @@ class Dispatch(Condictional):
             map(lambda arg: isinstance(*arg)),
             all
         )
+dispatch = Dispatch
 
 
 # In[20]:
 
 class SetCallable(set):
     def __call__(self, *args, **kwargs):
-#         if pipe(self, map(
-#                 partial(flip(isinstance), LambdaType)
-#         ), any):
-#             raise TypeError("Cannot interpolate a LambdaType.")
         values = map(lambda x: x(*args, **kwargs), self)
-        return dict(zip(self, list(values)))
+        return OrderedDict(zip(self, list(values)))
+    
+setf = SetCallable
 
 
 # In[22]:
@@ -98,6 +102,7 @@ class TupleCallable(tuple):
         return juxt(*self)(
             *args, **kwargs
         )
+tuplef = TupleCallable
 
 
 # In[5]:
@@ -107,4 +112,6 @@ class ListCallable(list):
         return list(juxt(*self)(
             *args, **kwargs
         ))
+    
+listf = ListCallable
 

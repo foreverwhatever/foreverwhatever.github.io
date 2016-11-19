@@ -3,7 +3,7 @@
 
 # # Using `luigi` to Autogenerate Executed Notebooks
 
-# In[11]:
+# In[1]:
 
 import luigi
 from luigi.util import inherits, requires
@@ -11,7 +11,7 @@ from toolz.curried import merge
 import nbconvert, nbformat, os, yaml
 
 
-# In[5]:
+# In[2]:
 
 class TheReplacements(luigi.ExternalTask):
     """Load a replacement file.
@@ -22,7 +22,7 @@ class TheReplacements(luigi.ExternalTask):
         return luigi.LocalTarget(self.replacements)
 
 
-# In[6]:
+# In[3]:
 
 class TheNotebook(luigi.ExternalTask):
     """Load a notebook
@@ -33,7 +33,7 @@ class TheNotebook(luigi.ExternalTask):
         return luigi.LocalTarget(self.notebook)
 
 
-# In[7]:
+# In[4]:
 
 @requires(TheNotebook)
 class DerivedNotebook(luigi.Task):
@@ -50,7 +50,7 @@ class DerivedNotebook(luigi.Task):
         return luigi.LocalTarget(self.target_name)
 
 
-# In[8]:
+# In[5]:
 
 @requires(DerivedNotebook)
 class ReplaceAndExecute(luigi.Task):
@@ -77,7 +77,7 @@ class ReplaceAndExecute(luigi.Task):
         return luigi.LocalTarget(self.target_name)            
 
 
-# In[9]:
+# In[6]:
 
 @requires(ReplaceAndExecute)
 class Executor(luigi.Task):
@@ -88,7 +88,7 @@ class Executor(luigi.Task):
         if self.execute:
             with self.input().open('r') as inp:
                 nb = nbformat.read(inp, 4)
-            ep = nbconvert.preprocessors.ExecutePreprocessor()
+            ep = nbconvert.preprocessors.ExecutePreprocessor(timeout=600)
             ep.preprocess(nb, {})
             with self.output().open('w') as out:
                 nbformat.write(nb, out)
