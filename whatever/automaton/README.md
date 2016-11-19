@@ -130,16 +130,15 @@ graph.node[transform_and_predict.__name__]['value'].sample(2)
   </thead>
   <tbody>
     <tr>
+      <th rowspan="2" valign="top">0</th>
       <th>0</th>
-      <th>0</th>
-      <td>7.925315</td>
-      <td>0.350700</td>
+      <td>9.143935</td>
+      <td>0.339549</td>
     </tr>
     <tr>
-      <th>1</th>
-      <th>1</th>
-      <td>-1.569909</td>
-      <td>-1.217893</td>
+      <th>0</th>
+      <td>8.045461</td>
+      <td>1.106094</td>
     </tr>
   </tbody>
 </table>
