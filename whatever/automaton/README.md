@@ -23,12 +23,12 @@ def h(a: f, b: g):
 
 
 ```python
-from whatever.consumer import consume
+from whatever.automaton import build
 ```
 
 
 ```python
-F = consume(f, h)
+F = build(f, h)
 F(A=10, B=32).node
 ```
 
@@ -83,7 +83,7 @@ def transform_and_predict(df: fit):
 
 
 ```python
-G = consume(load, transform_and_predict)
+G = build(load, transform_and_predict)
 graph = G(ALIAS='iris', SAMPLES=100)
 ```
 
@@ -113,16 +113,15 @@ graph.node[transform_and_predict.__name__]['value'].sample(2)
   </thead>
   <tbody>
     <tr>
+      <th rowspan="2" valign="top">1</th>
       <th>1</th>
-      <th>1</th>
-      <td>-1.043577</td>
-      <td>-2.472912</td>
+      <td>-0.795059</td>
+      <td>0.037019</td>
     </tr>
     <tr>
-      <th>2</th>
-      <th>2</th>
-      <td>-6.604323</td>
-      <td>0.534927</td>
+      <th>1</th>
+      <td>-0.881821</td>
+      <td>1.304642</td>
     </tr>
   </tbody>
 </table>
