@@ -18,6 +18,8 @@ _name_ = lambda x: x if isinstance(x, str) else x.__name__
 # In[9]:
 
 def discover_annotated_functions(G, objs=get_ipython().user_ns):
+    """Discover non-private annotated functions.
+    """
     return pipe(
         objs,
         keyfilter(lambda x: x[0] != '_'),
@@ -38,6 +40,8 @@ def discover_annotated_functions(G, objs=get_ipython().user_ns):
 # In[10]:
 
 def nest_and_stringify(annotated):
+    """Stringify function names in a graph.
+    """
     return pipe(
         annotated, 
         
@@ -53,9 +57,11 @@ def nest_and_stringify(annotated):
     )
 
 
-# In[11]:
+# In[22]:
 
 def create_edges(G, nested_graph):
+    """Add the graph edges based on the annotations to the graph.
+    """
     edges = pipe(
         nested_graph.items(),
         map(
@@ -69,9 +75,11 @@ def create_edges(G, nested_graph):
     return G
 
 
-# In[12]:
+# In[23]:
 
 def find_longest_path(start, end, G):
+    """Find the longest path of functions.
+    """
     return pipe(
         nx.all_simple_paths(G, start.__name__, end.__name__),
         topk(1, key=len),
@@ -82,10 +90,17 @@ def find_longest_path(start, end, G):
     )
 
 
-# In[21]:
+# In[30]:
 
-def run(G, path):
+def run(G, path, **kwargs):
+    """Iterate through the path and execute the function.
+    """
+    G.add_nodes_from(kwargs)
+    nx.set_node_attributes(G, 'value', None)
+    nx.set_node_attributes(G, 'value', kwargs)
     for function in path:
+        if G.node[function.__name__]['value']:
+            continue
         params = pipe(
             function,
             _annotations_,
@@ -101,19 +116,14 @@ def run(G, path):
     return G
 
 
-# In[20]:
+# In[29]:
 
-def consume(start, end, objs=get_ipython().user_ns, **kwargs):
-    G = nx.Graph()
-    G.add_nodes_from(kwargs)
-    nx.set_node_attributes(
-        G, 'value', kwargs
-    )
+def consume(start, end, objs=get_ipython().user_ns, G=nx.Graph()):
     path = pipe(
         discover_annotated_functions(G, objs),
         nest_and_stringify,
         partial(create_edges, G),
         partial(find_longest_path, start, end)
     )
-    return run(G, path)
+    return partial(run, G, path)
 
