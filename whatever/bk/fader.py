@@ -5,7 +5,7 @@
 
 import bokeh.plotting
 
-from coffeetools import coffee
+# from coffeetools import coffee
 import jinja2, pandas
 from toolz.curried import *
 
