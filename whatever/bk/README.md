@@ -47,7 +47,7 @@ text = p.add_glyph(source, bokeh.models.Text(x='A', y='B', text='size'))
 
 sweet_fade(p, text, props)
 
-bokeh.plotting.save(p)
+bokeh.plotting.show(p)
 pass
 ```
 
