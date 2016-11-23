@@ -171,6 +171,8 @@ class Harness(HarnessBase):
             extensions=extensions,
         )
         
+        
+            
         self.set_params(**kwargs)
         
         for ext in self.extensions:
