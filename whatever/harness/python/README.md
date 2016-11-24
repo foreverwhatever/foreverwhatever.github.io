@@ -1,3 +1,0 @@
-# `src`
-
-Compiled source files
