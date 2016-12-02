@@ -8,7 +8,6 @@ if (window.fader_callback == null) {
     for (prop in ref) {
       value = ref[prop];
       t = dx / (value.lim[1] - value.lim[0]);
-      console.log(t);
       if ((0 < t && t < 1)) {
         updated = (1 - t) * value.value[0] + t * value.value[1];
         if (value['append'] != null) {

@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[6]:
 
 import bokeh.plotting
 
@@ -20,7 +20,7 @@ __all__ = ['sweet_fade']
 # """, bare=True)
 
 
-# In[4]:
+# In[3]:
 
 # with open('templates/fader/globals.js.tpl', 'w') as f:
 #     pipe(
@@ -31,22 +31,23 @@ __all__ = ['sweet_fade']
 #     )
 
 
-# In[5]:
+# In[4]:
 
 # jssource = """
 # window.fader_callback ?= (x, y, renderer)->
 #     dx = x.end - x.start
 #     for prop, value of window.scrolling[renderer.id]
 #         t = dx/(value.lim[1]-value.lim[0])
-#         console.log t
+# #         console.log t
 #         if 0 < t < 1
 #             updated = (1-t)*value.value[0] + t*value.value[1]
 #             if value['append']?
 #                 updated += value.append
-#             renderer.glyph.set prop, updated"""
+
+# renderer.glyph.set prop, updated"""
 
 
-# In[6]:
+# In[7]:
 
 # with open('templates/fader/fader_callback.js', 'w') as f:
 #     pipe(
