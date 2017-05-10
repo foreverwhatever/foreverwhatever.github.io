@@ -1,2 +1,2 @@
 recursive-include . *.md
-recursive-exclude . _nbconvert.py
+recursive-include whatever *.ipynb

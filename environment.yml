@@ -1,0 +1,8 @@
+name: wffw
+channels:
+- conda-forge
+dependencies:
+- python=3.5
+- plumbum
+- luigi
+- toolz

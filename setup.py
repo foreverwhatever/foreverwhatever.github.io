@@ -1,38 +1,86 @@
 
 # coding: utf-8
 
-# In[85]:
+# In[2]:
 
-from os.path import join, dirname
-import setuptools
+from plumbum import local, FG # noqa: E402
+from setuptools import Command, setup, Distribution # noqa: E402, F401
+from setuptools.command.develop import develop
+import os
 
 
-def read(fname):
-    with open(join(dirname(__file__), fname)) as f:
-        return f.read()
+# Base class for no-arg commands
 
-from distutils.core import setup, Command
+# In[3]:
 
-setuptools.setup(
-    name="whatever-forever",
-    version="0.0.1",
-    author="Tony Fast",
-    author_email="tony.fast@gmail.io",
-    description="My python tools.",
-    include_package_data=True,
-    packages=setuptools.find_packages(),
-    classifiers=[
-        "Topic :: Utilities",
-        "Framework :: IPython",
-        "Natural Language :: English",
-        "Programming Language :: Python",
-        "Intended Audience :: Developers",
-        "Development Status :: 3 - Alpha",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD License",
-        "Topic :: Software Development :: Testing",
-    ],
-    install_requires=[],
-    tests_require=[],
+packages = ['whatever', 'forever']
+
+
+# In[4]:
+
+class CommandBase(Command):
+    user_options = []
+    def initialize_options(self): pass
+    def finalize_options(self): pass
+
+
+# Conversion rules for all of the notebooks
+# 
+#         from setuptools import  Distribution
+#         Convert(Distribution()).run()
+
+# In[20]:
+
+class Convert(CommandBase):
+    def run(self):
+        convert = local['jupyter']['nbconvert']['--config']['config.py']
+        convert['--to']['script']['--template']['_layouts/docify.tpl']['setup.ipynb']['_posts/__init__.ipynb']['_pages/*.ipynb'] & FG
+        convert['--to']['markdown']['--template']['_layouts/jekyll.md.tpl']['_posts/*.ipynb']['_pages/*.ipynb'] & FG 
+        convert['--to']['html']['--template']['_layouts/jekyll.html.tpl']['index.ipynb'] & FG 
+        local['yapf']['-i']['-r']['_pages'] & FG
+        local['echo']["Conversion complete"] & FG
+        pass
+
+
+# In[21]:
+
+from setuptools import  Distribution
+
+
+# Watcher to convert notebooks to python.
+
+# In[ ]:
+
+class Watch(CommandBase):
+    def run(self):
+        try:
+            local['watchmedo']['tricks-from']['tricks.yml'] & FG
+        except KeyboardInterrupt:
+            pass
+
+
+# In[ ]:
+
+class Develop(develop):
+    def run(self):
+        for folder, package in zip(['_posts', '_pages'], packages):
+            try:
+                os.unlink(package)
+            except FileNotFoundError: 
+                pass
+            os.symlink(folder, package)
+        develop.run(self)
+
+
+# In[ ]:
+
+setup(
+    name="forever-whatever",
+    version="0.0.0",
+#     package_dir={'whatever': '_posts', 'forever': '_pages', },
+    packages=packages,
+    cmdclass={'watch': Watch, 'convert': Convert, 'developer': Develop}
 )
+
+
+# __*fin*__
