@@ -1,5 +1,5 @@
 ---
-modified_date: May 8, 2017
+modified_date: May 11, 2017
 name: index
 path: .
 
@@ -11806,9 +11806,9 @@ div#notebook {
 <div class="container">
 <div class="row">
 {% for post in site.posts %}{% capture post_ %}
-### [`{{post.title}}`]({{post.url}})
+### [{{post.title}}]({{post.url}})
 
-<del>{{post.description}}</del>
+> {{post.description | markdownify}}
 
 {% endcapture %}
 <div class="col col-md-6">{{post_ | markdownify}}</div>
@@ -11817,103 +11817,12 @@ div#notebook {
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 class="text-center"><del><code>drawings</code></del></h2><hr>
-</div>
-</div>
-</div><style>
+</div><!--style>
 del:hover {
     text-decoration: none;
 }
 
-</style>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">_pages.index</span> <span class="k">import</span> <span class="n">sign</span>
-    <span class="n">sign</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>made with 💙 by tonyfast on
----
-Fri Apr 28 11:13:53 EDT 2017
-[NbConvertApp] Converting notebook index.ipynb to html
-Traceback (most recent call last):
-  File &#34;/Users/tonyfast/anaconda/bin/jupyter-nbconvert&#34;, line 11, in &lt;module&gt;
-    load_entry_point(&#39;nbconvert==5.1.1&#39;, &#39;console_scripts&#39;, &#39;jupyter-nbconvert&#39;)()
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/jupyter_core/application.py&#34;, line 267, in launch_instance
-    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/traitlets/config/application.py&#34;, line 658, in launch_instance
-    app.start()
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/nbconvertapp.py&#34;, line 305, in start
-    self.convert_notebooks()
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/nbconvertapp.py&#34;, line 473, in convert_notebooks
-    self.convert_single_notebook(notebook_filename)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/nbconvertapp.py&#34;, line 444, in convert_single_notebook
-    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/nbconvertapp.py&#34;, line 373, in export_single_notebook
-    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/exporter.py&#34;, line 171, in from_filename
-    return self.from_file(f, resources=resources, **kw)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/exporter.py&#34;, line 189, in from_file
-    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/html.py&#34;, line 69, in from_notebook_node
-    return super(HTMLExporter, self).from_notebook_node(nb, resources, **kw)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/templateexporter.py&#34;, line 239, in from_notebook_node
-    output = self.template.render(nb=nb_copy, resources=resources)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/templateexporter.py&#34;, line 111, in template
-    self._template_cached = self._load_template()
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/nbconvert/exporters/templateexporter.py&#34;, line 222, in _load_template
-    return self.environment.get_template(template_file)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/jinja2/environment.py&#34;, line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/jinja2/environment.py&#34;, line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File &#34;/Users/tonyfast/anaconda/lib/python3.5/site-packages/jinja2/loaders.py&#34;, line 408, in load
-    raise TemplateNotFound(name)
-jinja2.exceptions.TemplateNotFound: ../_includes/jekyll.tpl
-
-real	0m0.930s
-user	0m0.822s
-sys	0m0.081s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
+</style-->
     </div>
   </div>
 </body>

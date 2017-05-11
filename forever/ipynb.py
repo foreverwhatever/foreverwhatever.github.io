@@ -1,6 +1,4 @@
 # coding: utf-8
-
-
 """> A set of tools for the notebook.  
 
 ## Import notebooks with
@@ -16,12 +14,16 @@ from os.path import exists, extsep, sep
 from nbconvert import export, get_exporter
 import nbformat, sys
 
+
 class NotebookLoader(SourceFileLoader):
     def get_code(self, path):
         with open(self.path, 'r') as f:
             nb = nbformat.read(f, 4)
         return export(get_exporter('script'), nb)[0].encode('utf-8')
+
+
 _NotebookLoader_ = LazyLoader.factory(NotebookLoader)
+
 
 class NotebookFinder(object):
     def find_spec(self, name, paths, target=None):
@@ -35,17 +37,21 @@ class NotebookFinder(object):
                 return spec
         return None
 
+
 def notebook_module(name, path=None, target=None):
     path = name + '.ipynb' if not path else path
     return module_from_spec(NotebookFinder().find_spec(name, path, target))
 
+
 finder = NotebookFinder()
 hook = FileFinder.path_hook((NotebookLoader, ['.ipynb']))
+
 
 def load_ipython_extension(ip=None):
     sys.meta_path.append(finder)
     sys.path_hooks.append(hook)
     sys.path_importer_cache.clear()
+
 
 def unload_ipython_extension(ip=None):
     sys.path_hooks = list(filter(lambda x: x is not hook, sys.path_hooks))

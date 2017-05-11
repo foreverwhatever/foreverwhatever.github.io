@@ -1,2 +1,3 @@
 exclude:
     - '*.ipynb'
+excerpt_separator: <!--quote-->
