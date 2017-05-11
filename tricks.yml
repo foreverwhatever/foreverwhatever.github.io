@@ -24,7 +24,7 @@ tricks:
     - ./whatever/*.ipynb
     ignore_patterns: ["*~*.ipynb",  "*-checkpoint.ipynb"]
     shell_command: >
-        jupyter nbconvert --to markdown --config config.py --template _layouts/jekyll.md.tpl --output-dir _posts --config _layouts/markdown.py  "${watch_src_path}"
+        jupyter nbconvert --to markdown --template _layouts/jekyll.md.tpl --output-dir _posts --config _layouts/markdown.py  "${watch_src_path}"
 
 - watchdog.tricks.ShellCommandTrick:
     patterns:
