@@ -30,8 +30,6 @@ title: '`jupyter` & `jekyll`'
 
 ---
 
-There are quite a few resources online to blog with `jupyter` notebooks. 
-
         {% raw %}
 
 ## `templates`
