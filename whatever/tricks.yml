@@ -1,0 +1,8 @@
+tricks:
+- watchdog.tricks.ShellCommandTrick:
+    patterns: ['*.ipynb']
+    ignore_patterns: ["*~*.ipynb",  "*-checkpoint.ipynb"]
+    shell_command: >
+        jupyter nbconvert 
+        --config ../_layouts/markdown.py --template ../_layouts/jekyll.md.tpl 
+        --output-dir ../_posts  "${watch_src_path}"

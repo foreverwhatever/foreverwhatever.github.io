@@ -1,8 +1,8 @@
 ---
 layout: post
-modified_date: May 11, 2017
-name: 2015-12-27-jekyll-and-jupyter
-path: ./whatever
+modified_date: May 12, 2017
+name: 2015-12-28-jekyll-and-jupyter
+path: .
 
 description: live preview blogging with jupyter and jekyll.
 kernelspec:
@@ -26,12 +26,11 @@ title: '`jupyter` & `jekyll`'
 
 # {{page.title}}
 
-{{data}}
----
-
-> Undoubtedly, `jupyter` is my favorite tool for innovation. And, `jekyll` is my most trusted open source resource.  This blog post combines the `jekyll` static site & blogs with `jupyter` notebook namespaces for live document development.  
+> Undoubtedly, `jupyter` is my favorite tool for innovation. And, `jekyll` is my most trusted open source resource.  This blog post combines the `jekyll` static site & blogs with `jupyter` notebook namespaces for live document development.
 
 ---
+
+There are quite a few resources online to blog with `jupyter` notebooks. 
 
         {% raw %}
 
@@ -139,6 +138,9 @@ Combining `jupyter` and `jekyll` requires a bit of customization.  `nbconvert`'s
 
 ```python
         %%file ../_layouts/markdown.py
+        c.NbConvertApp.export_format = 'markdown'
+        c.FilesWriter.build_directory = '_posts'
+        c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl'
         c.TemplateExporter.filters = {
             'dump': 'json.dumps',
             'load': 'json.loads',
@@ -170,7 +172,7 @@ Combining `jupyter` and `jekyll` requires a bit of customization.  `nbconvert`'s
 
 
 ```python
-import bs4, nbformat, nbconvert
+        import bs4, nbformat, nbconvert
 ```
 
 `_layouts/jekyll.md.tpl` formats a notebook as `markdown`.  It is reasonable to go directly to `html`, but that may limit the ability to edit the post later on.  The alternative will nest the `markdown` into an `html` template containing all of the notebook `style`.  The `html` template will be placed in `_layouts/post.html`.
@@ -181,7 +183,7 @@ Start with this `notebook`
 
 
 ```python
-        post = '2015-12-27-jekyll-and-jupyter.ipynb'
+        post = '2015-12-28-jekyll-and-jupyter.ipynb'
 ```
 
 & convert it to a `BeautifulSoup` object with the `nbconvert.templates.html.full` template.
@@ -200,18 +202,14 @@ Create `div#notebook-container`
         div = soup.new_tag('div', id='notebook-container', **{'class': "container"})        
 ```
 
-& append the `markdown` post content
 
-
-```python
-        div.append('{{content}}')
-```
 
 `jekyll` places  blocks in the `_includes` directory.  For example, `_includes/disqus.html` will append `Disqus` comments to each post
 
 
 ```python
-        div.append('{% include disqus.html %}')
+        div.append('{'+'{content}}')
+        div.append('{'+'% include disqus.html %}')
 ```
 
 Replace the body of this `notebook` with `div#notebook-container`
@@ -229,22 +227,187 @@ Prepend a `block` for navigation & save the template.
         with open('../_layouts/post.html', 'w') as f: f.write(str(soup))
 ```
 
-# conversion
+# development
 
 
 ```python
-        !time jupyter nbconvert --to markdown --config ../_layouts/markdown.py --output-dir ../_posts --template ../_layouts/jekyll.md.tpl 2015-12-27-jekyll-and-jupyter.ipynb
+        import random; from IPython import display; o = __name__ == '__main__'
+```
+
+## conversion
+
+
+```python
+        !time jupyter nbconvert --config ../_layouts/markdown.py --output-dir ../_posts --template ../_layouts/jekyll.md.tpl 2015-12-28-jekyll-and-jupyter.ipynb
 ```
 
 ---
-    [NbConvertApp] Converting notebook 2015-12-27-jekyll-and-jupyter.ipynb to markdown
-    [NbConvertApp] Writing 8000 bytes to ../_posts/2015-12-27-jekyll-and-jupyter.md
+    [NbConvertApp] Converting notebook 2015-12-28-jekyll-and-jupyter.ipynb to markdown
+    [NbConvertApp] Writing 11751 bytes to ../_posts/2015-12-28-jekyll-and-jupyter.md
     
-    real	0m0.907s
-    user	0m0.810s
-    sys	0m0.080s
+    real	0m0.901s
+    user	0m0.815s
+    sys	0m0.068s
 
 ---
+
+## `watchdog`
+
+        
+
+
+```python
+        %%file tricks.yml
+        tricks:
+        - watchdog.tricks.ShellCommandTrick:
+            patterns: ['*.ipynb']
+            ignore_patterns: ["*~*.ipynb",  "*-checkpoint.ipynb"]
+            shell_command: >
+                jupyter nbconvert 
+                --config ../_layouts/markdown.py --template ../_layouts/jekyll.md.tpl 
+                --output-dir ../_posts  "${watch_src_path}"
+```
+
+---
+    Overwriting tricks.yml
+
+---
+
+        {% endraw %}
+
+## services
+
+The services automatically ⓵ convert `notebook`s to `front matter/markdown`  & ⓶ compile and serve the static `jekyll` site.
+
+⓵ __convert `notebooks` to `markdown`__ Run `watchdog`'s `watchmedo` scripts that runs `tricks.yml`.  `watchdog` runs in a separate thread and does not interrupt any notebook services directly.  `post_save_hook` approaches can cause some lag in the `notebook` experience.
+
+⓶ __serve `jekyll`__ - watch for incremental changes to `_posts` and `_pages`.  each page updates after `watchdog` transformed a `notebook`
+
+> ### in `notebook` mode
+
+Open __<del>2</del>__ terminals 
+
+
+```python
+        terminal = lambda alias: display.IFrame(
+            "http://localhost:8888/terminals/{}".format(alias or random.randint()), width=900, height=350)
+```
+
+to observe the conversions with the following `commands`
+
+
+```python
+        commands = """watchmedo tricks-from tricks.yml
+        jekyll serve -wit"""
+```
+
+---
+
+
+```python
+        def comment(data: display.display):
+            """print comment tags around display objects to suppress jekyll rendering."""
+            print("{"+"% comment %}")
+            try:
+                display.display(*data)
+            except:
+                display.display(data)
+            print("{"+"% endcomment %}")
+            return data
+```
+
+---
+
+
+```python
+        True and o and comment([
+            terminal(alias=line.strip().split(' ', 1)[0]) for line in commands.splitlines()]);
+```
+
+---
+    {% comment %}
+
+---
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="900"
+            height="350"
+            src="http://localhost:8888/terminals/watchmedo"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="900"
+            height="350"
+            src="http://localhost:8888/terminals/jekyll"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+---
+    {% endcomment %}
+
+---
+
+List running processes
+
+
+```python
+        True and o and comment(display.IFrame("http://localhost:8888/tree#running", width=900, height=400));
+```
+
+---
+    {% comment %}
+
+---
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="900"
+            height="400"
+            src="http://localhost:8888/tree#running"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+---
+    {% endcomment %}
+
+---
+
+> a video clip of the real time rendering.
+
+
+```python
+        display.IFrame("https://drive.google.com/file/d/0By1jFTVZ0ljbSk96dkpJUElHck0/preview", width=800, height=500)
+```
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="800"
+            height="500"
+            src="https://drive.google.com/file/d/0By1jFTVZ0ljbSk96dkpJUElHck0/preview"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
 
 ## other
 
@@ -255,7 +418,3 @@ Prepend a `block` for navigation & save the template.
 * __Why `jekyll` for static sites?__ `jekyll` provides predictable deployment on Github with `pages`.
 
 * __Use `doctr` for integration__
-
-* __`watchdog` for `development`__
-
-        {% endraw %}
