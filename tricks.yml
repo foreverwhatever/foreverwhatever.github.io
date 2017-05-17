@@ -9,7 +9,6 @@ tricks:
     shell_command: >
         jupyter nbconvert --to custom --Exporter.file_extension='.py' --template _layouts/docify.tpl  "${watch_src_path}" & jupyter nbconvert --to markdown --config config.py --template _layouts/jekyll.md.tpl --output-dir _pages "${watch_src_path}"
 
-tricks:
 - watchdog.tricks.ShellCommandTrick:
     patterns:
     - ./index.ipynb

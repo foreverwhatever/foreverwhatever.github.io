@@ -1,8 +1,8 @@
 ---
 layout: post
-modified_date: May 12, 2017
+modified_date: May 16, 2017
 name: 2015-12-28-jekyll-and-jupyter
-path: .
+path: ''
 
 description: live preview blogging with jupyter and jekyll.
 kernelspec:
@@ -26,7 +26,7 @@ title: '`jupyter` & `jekyll`'
 
 # {{page.title}}
 
-> Undoubtedly, `jupyter` is my favorite tool for innovation. And, `jekyll` is my most trusted open source resource.  This blog post combines the `jekyll` static site & blogs with `jupyter` notebook namespaces for live document development.
+> Undoubtedly, `jupyter` is my favorite tool for innovation. And, `jekyll` is my most trusted open source resource.  This blog post combines the `jekyll` static sites to blog with `jupyter` notebooks & create reusable code during live document development.
 
 ---
 
@@ -34,11 +34,11 @@ title: '`jupyter` & `jekyll`'
 
 ## `templates`
 
-`templates` mix  data and strings.  There are __<del>two</del>__ templating steps required to combine `jupyter` `notebook`s with the static site generator - `jekyll`.  The templates will
+`templates` weave variables of data with strings.  There are __<del>two</del>__ templating steps required to combine `jupyter` `notebook`s with the static site generator - `jekyll`.  The templates will
 
-❶ convert a __notebook__ to markdown with `nbconvert` and `jinja2` templates - `ipynb`👉`md`
+❶ convert a __notebook__ to markdown with `nbconvert`;  `python` templating package `jinja2` to transforms them from `ipynb`👉`md`
 
-❷ `jekyll` will compile `liquid` before creating the static `_site` - `md`👉`html`
+❷ `jekyll` will compile `liquid` before creating the static asset in `_site` - `md`👉`html`
 
 ## ❶ the `nbconvert` template
 
@@ -59,10 +59,9 @@ title: '`jupyter` & `jekyll`'
 
 #### frontmatter & `jekyll`
 
-`jekyll` recognizes files beginning with `--- yaml: front matter ---`.  `nbconvert` will markdownify the notebook and prepend the front matter.  The transformed file will be used by the `jekyll` server to create a static site.
+`jekyll` recognizes files beginning with `--- yaml: front matter ---`.  `nbconvert` will prepend the front matter and  markdownify the notebook.  The transformed file will be used by the `jekyll` server to create a static site.
 
-
-Structured data in the `front matter` can be reused when `jekyll` renders the document.  The `nbconvert` template will prepend the `notebook` metadata to the front matter.  It is preferrable for the `front matter` to be a `yaml` formatted string because it is easy to edit. 
+Structured data in the `front matter` can be reused when `jekyll` renders the document.  The `nbconvert` template will contain the `notebook` metadata to the front matter.  It is preferrable for the `front matter` to be a `yaml` formatted string because it is easy to edit. 
 
 > the `json.dump` - `json.load` - `yaml.safe_load` chain stringifies the notebook `metadata`
 
@@ -84,9 +83,11 @@ Structured data in the `front matter` can be reused when `jekyll` renders the do
 
 ---
 
-##  outputs
+> `layout: post` in the beginning is overridden `layout` in the notebook metadata.
 
-###  `stream`
+###  template & outputs
+
+####  `stream`
 
 The standard python output - `stream` - should be notably separate from the inputs when we have viewers 👀 on the document.  Add horizontal rules to the `stream` block to delimit input and output cells.
 
@@ -105,9 +106,9 @@ The standard python output - `stream` - should be notably separate from the inpu
 
 ---
 
-### rich outputs
+#### rich outputs
 
-The standard `markdown` template suppresses rich display `block`s provided by the `html` template.  The snippet below copies the `data_*` blocks from the [`nbconvert.template.html.basic`](https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/basic.tpl) `template` to the `_layouts/jekyll.md.tpl`.
+The standard `markdown` template will suppress rich display `block`s, unlike the `html/basic` template.  The snippet below copies the `data_*` blocks from the [`nbconvert.template.html.basic`](https://github.com/jupyter/nbconvert/blob/master/nbconvert/templates/html/basic.tpl) `template` to the `_layouts/jekyll.md.tpl`.
 
 
 ```python
@@ -123,26 +124,20 @@ The standard `markdown` template suppresses rich display `block`s provided by th
 
 > Now images and javascript will embed into `markdown`.
 
-## ❶<small>.❶</small> configuring `nbconvert`
+### configuring `nbconvert`
 
-Combining `jupyter` and `jekyll` requires a bit of customization.  `nbconvert`'s rich configuration system provides control when transforming `ipynb` files to other formats.  In this pipeline, we focus on converting `ipynb` files to `markdown` for a `jekyll` blog.
+Combining `jupyter` and `jekyll` requires a bit of customization.  `nbconvert`'s rich configuration system provides control when transforming `ipynb` files to other formats. 
 
 > the `py🐍hon` configuration file for the `markdown/jekyll` hybrid is [`_layouts/markdown.py`]().
 
-#### filters
-
-`jinja2` provides filters to manipulate `python` objects before finally becoming a string.  There are some native `nbconvert` filters like `indent` used in the `block stream`.  In the `front matter` we join `dump | load | yaml` to format our `front matter`.  The snippet below assigns these filters to the using their `python` import path
+Our configuration file exports `markdown` files to the `_posts` directory using the template `_layouts/jekyll.md.tpl`.
 
 
 ```python
         %%file ../_layouts/markdown.py
         c.NbConvertApp.export_format = 'markdown'
         c.FilesWriter.build_directory = '_posts'
-        c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl'
-        c.TemplateExporter.filters = {
-            'dump': 'json.dumps',
-            'load': 'json.loads',
-            'yaml': 'yaml.dump'};
+        c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl';
 ```
 
 ---
@@ -150,9 +145,24 @@ Combining `jupyter` and `jekyll` requires a bit of customization.  `nbconvert`'s
 
 ---
 
+#### filters
+
+`jinja2` provides filters to manipulate `python` objects before finally becoming a string; this action is not easily reversible.  There are some native `nbconvert` filters like `indent` are used in `block stream`.  In the `front matter` we join `dump | load | yaml` to format our `front matter`.  The snippet below assigns these filters to the using their qualified `python` import path
+
+
+```python
+        %%file ../_layouts/markdown.py -a
+        c.TemplateExporter.filters = {'dump': 'json.dumps', 'load': 'json.loads', 'yaml': 'yaml.dump'};
+```
+
+---
+    Appending to ../_layouts/markdown.py
+
+---
+
 #### `display_priority`
 
-`nbconvert` natively extracts images from a notebook & does not template javascript.  The modification to the configuration below makes sure images are embedded as is the javascript.
+`nbconvert` natively decouples images from a notebook & does not template javascript.  The modification to the configuration below makes sure images are embedded as is the javascript.
 
 
 ```python
@@ -200,8 +210,6 @@ Create `div#notebook-container`
         div = soup.new_tag('div', id='notebook-container', **{'class': "container"})        
 ```
 
-
-
 `jekyll` places  blocks in the `_includes` directory.  For example, `_includes/disqus.html` will append `Disqus` comments to each post
 
 
@@ -210,18 +218,16 @@ Create `div#notebook-container`
         div.append('{'+'% include disqus.html %}')
 ```
 
-Replace the body of this `notebook` with `div#notebook-container`
+Replace the body of this `notebook` with `div#notebook-container` and prepend a block for navigation.
 
 
 ```python
-        soup.select_one('#notebook-container').replace_with(div);
+        soup.select_one('#notebook-container').replace_with(div)
+        soup.select_one('#notebook-container').insert_before('{% include header.html %}')
 ```
 
-Prepend a `block` for navigation & save the template.
-
 
 ```python
-        soup.select_one('#notebook-container').insert_before('{% include header.html %}')
         with open('../_layouts/post.html', 'w') as f: f.write(str(soup))
 ```
 
@@ -241,11 +247,11 @@ Prepend a `block` for navigation & save the template.
 
 ---
     [NbConvertApp] Converting notebook 2015-12-28-jekyll-and-jupyter.ipynb to markdown
-    [NbConvertApp] Writing 11751 bytes to ../_posts/2015-12-28-jekyll-and-jupyter.md
+    [NbConvertApp] Writing 10459 bytes to ../_posts/2015-12-28-jekyll-and-jupyter.md
     
-    real	0m0.901s
-    user	0m0.815s
-    sys	0m0.068s
+    real	0m0.909s
+    user	0m0.819s
+    sys	0m0.072s
 
 ---
 

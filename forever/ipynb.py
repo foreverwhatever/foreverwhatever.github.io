@@ -9,10 +9,11 @@
 
 from importlib.util import module_from_spec, spec_from_loader, LazyLoader
 from importlib.machinery import SourceFileLoader, FileFinder
+from IPython import display
 from os import curdir
 from os.path import exists, extsep, sep
 from nbconvert import export, get_exporter
-import nbformat, sys
+import nbformat, random, sys
 
 
 class NotebookLoader(SourceFileLoader):
@@ -45,6 +46,14 @@ def notebook_module(name, path=None, target=None):
 
 finder = NotebookFinder()
 hook = FileFinder.path_hook((NotebookLoader, ['.ipynb']))
+
+
+def terminal(alias=None):
+    return display.IFrame(
+        "http://localhost:8888/terminals/{}".format(
+            alias or random.randint(1000, 9999)),
+        width=900,
+        height=400)
 
 
 def load_ipython_extension(ip=None):
