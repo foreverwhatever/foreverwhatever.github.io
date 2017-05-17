@@ -1,0 +1,19 @@
+language: python
+python:
+  - 3.6
+
+script:
+      - set -e
+      - echo "test"
+      - pip install doctr
+      - doctr deploy .
+env:
+    global:
+    - secure: "QQFDyvCnpq31X3m9aRngRbI1wENkIJgkC/vcJO0m8mo3yCq4LIChi55WDrxpI7LEuGqOD
+    ZW62Kv5+mjpIgspEV/e8O5UVL9hLix9ASnSfVWK0PQte3lKJ6Lp1/3zn3MAugVuvNgik0Vr7wROzCbHEqj3fNzQ0
+    CapDSVjsMntjrgE4bGp0QtN6JokOGuKRmwyf1ZVGGVAozgJmJL2/vYQ+TYOdSHXq290xaBV9wrQ84B7y4a72aNog
+    uzPpc+zxHGIki1gyGbU8bA0NuBGW/wpfPwuUdZ7n1xk+DSKotjxpL23WjvGU09guhRvirGcXVvvQMFCdpHOwAUjF
+    qBvBhur+VWHcxB/CDrojlho9XGZTzmOB+slhRGMgD09nB+UjXJS+AtrR4mTeieg1O2fP0TPqPRAc3qmVWFwfEEvE
+    m52zmKU55yPx8eP0Bc+0ZfPDm4kHBiqSDG+lgqMT3tYxD91MQTcBOeHo1ylLIbBhcxx4FOId18USg9EOa0zVdiux
+    jpISlKXJHDgx2NIxfNDoUWORldDeoB5h4fmdDWjJ1N7Vj6vxkz16hshqqOWXZJNHHK6hSLwVY+ldakICktSBr7j7
+    aoojqFomWZX1BdnUHaKzfryq4Tkz/9nzBan3Q3/t7L7wGHs16edF83yIyfuEUGGJljiqZL9kUne0sSnPavFh9w="
