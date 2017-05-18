@@ -4,8 +4,16 @@ python:
 
 script:
 - set -e
-- pip install doctr
-- doctr deploy .
+- pip install pyyaml nbconvert
+- git init
+- git config user.name "T-Bone"
+- git config user.email "tony.fast@gmail.com"
+- git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
+- git fetch upstream
+- jupyter nbconvert --config _layouts/markdown.py --template _layouts/jekyll.md.tpl  --output-dir _posts  whatever/*.ipynb
+- git add _posts/*.md
+- git commit -m "Convert posts automatically"
+- git push upstream master
 
 env:
     global:
