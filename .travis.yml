@@ -7,11 +7,9 @@ install:
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 - hash -r
-- conda config --set always_yes yes --set changeps1 no
-- conda config --add channels conda-forge # For sphinxcontrib.autoprogram
 - conda update -q conda
 - conda info -a
-- conda create -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
+- conda create -y -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
 - source activate convert
 
 script:
