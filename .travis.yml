@@ -11,7 +11,8 @@ install:
 - conda config --add channels conda-forge # For sphinxcontrib.autoprogram
 - conda update -q conda
 - conda info -a
-- conda install jupyter nbconvert
+- conda create -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
+- source activate convert
 
 script:
 - set -e
