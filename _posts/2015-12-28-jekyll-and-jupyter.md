@@ -2,7 +2,7 @@
 layout: post
 modified_date: May 17, 2017
 name: 2015-12-28-jekyll-and-jupyter
-path: ''
+path: whatever
 
 description: live preview blogging with jupyter and jekyll.
 kernelspec:
@@ -226,17 +226,31 @@ Replace the body of this `notebook` with `div#notebook-container` and prepend a 
         soup.select_one('#notebook-container').insert_before('{% include header.html %}')
 ```
 
+---
+
 
 ```python
-        with open('../_layouts/post.html', 'w') as f: f.write(str(soup))
+        with "💾" and open('../_layouts/post.html', 'w') as f: f.write(str(soup))
 ```
 
 ## conversion
+
+Use the `jupyter nbconvert` CLI to convert the notebook 👉 `markdown` in `_posts`.
 
 
 ```python
         !time jupyter nbconvert --config ../_layouts/markdown.py --output-dir ../_posts --template ../_layouts/jekyll.md.tpl 2015-12-28-jekyll-and-jupyter.ipynb
 ```
+
+---
+    [NbConvertApp] Converting notebook 2015-12-28-jekyll-and-jupyter.ipynb to markdown
+    [NbConvertApp] Writing 8739 bytes to ../_posts/2015-12-28-jekyll-and-jupyter.md
+    
+    real	0m0.952s
+    user	0m0.855s
+    sys	0m0.081s
+
+---
 
 ## other
 
