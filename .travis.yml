@@ -25,7 +25,7 @@ script:
 - jupyter nbconvert --config _layouts/markdown.py --template _layouts/jekyll.md.tpl  --output-dir _posts  whatever/*.ipynb
 - git add _posts/*.md
 - git commit -m "Convert posts automatically"
-- git checkout master -f
+- git checkout master
 - git merge upstream/build
 - git push -q upstream HEAD:master
 
