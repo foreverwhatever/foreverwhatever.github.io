@@ -1,7 +1,7 @@
 ---
 layout: post
 modified_date: May 29, 2017
-name: 2015-12-28-jekyll-and-jupyter
+name: 2016-12-28-jekyll-and-jupyter
 path: whatever
 
 description: two templates to rule them all.
