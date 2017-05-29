@@ -22,11 +22,12 @@ script:
 - git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
 - git fetch upstream
 - git reset upstream/build
+- git checkout -b built
 - jupyter nbconvert --config _layouts/markdown.py --template _layouts/jekyll.md.tpl  --output-dir _posts  whatever/*.ipynb
 - git add _posts/*.md
 - git commit -m "Convert posts automatically"
 - git checkout master
-- git merge upstream/build
+- git merge built
 - git push -q upstream HEAD:master
 
 env:
