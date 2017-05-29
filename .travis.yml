@@ -27,7 +27,7 @@ script:
 - git add _posts/*.md
 - git commit -m "Convert posts automatically"
 - git checkout master
-- git merge built
+- git merge built -m "Merged by travis"
 - git push -q upstream HEAD:master
 
 env:
