@@ -2,11 +2,18 @@ language: python
 python:
 - 3.5
 
+# blocklist
+branches:
+  except:
+  - master
+
 install:
 - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 - hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda config --add channels conda-forge # For sphinxcontrib.autoprogram
 - conda update -q conda
 - conda info -a
 - conda create -y -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
@@ -19,11 +26,15 @@ script:
 - git config user.email "tony.fast@gmail.com"
 - git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
 - git fetch upstream
+- git reset upstream/build
+- git checkout -b built
 - jupyter nbconvert --config _layouts/markdown.py --template _layouts/jekyll.md.tpl  --output-dir _posts  whatever/*.ipynb
 - git add _posts/*.md
 - git commit -m "Convert posts automatically"
-- git push upstream master
+- git checkout master
+- git merge built -m "Merged by travis"
+- git push -q upstream HEAD:master
 
 env:
     global:
-    - secure: "QQFDyvCnpq31X3m9aRngRbI1wENkIJgkC/vcJO0m8mo3yCq4LIChi55WDrxpI7LEuGqODZW62Kv5+mjpIgspEV/e8O5UVL9hLix9ASnSfVWK0PQte3lKJ6Lp1/3zn3MAugVuvNgik0Vr7wROzCbHEqj3fNzQ0CapDSVjsMntjrgE4bGp0QtN6JokOGuKRmwyf1ZVGGVAozgJmJL2/vYQ+TYOdSHXq290xaBV9wrQ84B7y4a72aNoguzPpc+zxHGIki1gyGbU8bA0NuBGW/wpfPwuUdZ7n1xk+DSKotjxpL23WjvGU09guhRvirGcXVvvQMFCdpHOwAUjFqBvBhur+VWHcxB/CDrojlho9XGZTzmOB+slhRGMgD09nB+UjXJS+AtrR4mTeieg1O2fP0TPqPRAc3qmVWFwfEEvEm52zmKU55yPx8eP0Bc+0ZfPDm4kHBiqSDG+lgqMT3tYxD91MQTcBOeHo1ylLIbBhcxx4FOId18USg9EOa0zVdiuxjpISlKXJHDgx2NIxfNDoUWORldDeoB5h4fmdDWjJ1N7Vj6vxkz16hshqqOWXZJNHHK6hSLwVY+ldakICktSBr7j7aoojqFomWZX1BdnUHaKzfryq4Tkz/9nzBan3Q3/t7L7wGHs16edF83yIyfuEUGGJljiqZL9kUne0sSnPavFh9w="
+    - secure: "HtxfYJqfHoGJ76be5EIx5907JiOpPZYPg+M3lENUnGpvA6tg9qVFV/fmiqBKKQlSTCz/GyjM4/WdRGWOEXK5g7YpuM/cpc5UpehTnbMAHnE9yAmMXMZDDhDn8rpjDhOBZIHg43i1f01Lm/ugIWvpXCqFnwVQrdeyOV18Rl30WBkBY0QqHf49plA3kEjeWqHLw7dZisRxwLRZ1Pxf/73fgdGfr6k7Rko5oJ7mIPb41NoWg1bcuzxVi1IjOdX3TFT1RNpE1n1IMTPGZGOge+UwsZYAbmXQBkfDCePP6GAbsXuYg3jHjLlrNebKIKsLch0Pb4ZJuYsNS7p9m8odLdSz2q5RarV4v25OK9fPlLuE60IlH1QQowFnKDftm9mQplUhiqYesSlGC5QuLum8GStY580prIlQB7PIi3jTaskSAreMz/WBkagp1RnKkq/lzDjzWvHtVW4K8v14G/3df+FRuSOOBzl4Jw7h6NHx2CGsAs3VzMQQTEPD6hdSpHE9wHLAS3OMFpZKK5uUhgCr61BssSfpIQ5Xxj9Dblr8g23BO11/ORgtxMN3yrSv6f+QaTup5Ca0hqBeOBH2XAgSllquF+O+CGgZMJY8VqGJyYAMF0+hhqlj/jpEswLYakKGFujLtz5txZutQG0qUQ1U7X2MCgCZwObYPg2n9FAY+LqFUlU="
