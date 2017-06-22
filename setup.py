@@ -1,22 +1,13 @@
 # coding: utf-8
 
-# In[2]:
-
 from plumbum import local, FG  # noqa: E402
-from setuptools import Command, setup, Distribution  # noqa: E402, F401
-from setuptools.command.develop import develop
+from setuptools import find_packages, Command, setup, Distribution  # noqa: E402, F401s
 import os
-
-# Base class for no-arg commands
-
-# In[3]:
-
-packages = ['whatever', 'forever']
-
-# In[4]:
 
 
 class CommandBase(Command):
+    """Base class for no-arg commands
+    """
     user_options = []
 
     def initialize_options(self):
@@ -26,15 +17,13 @@ class CommandBase(Command):
         pass
 
 
-# Conversion rules for all of the notebooks
-# 
-#         from setuptools import  Distribution
-#         Convert(Distribution()).run()
-
-# In[20]:
-
-
 class Convert(CommandBase):
+    """Conversion rules for all of the notebooks
+    
+            from setuptools import  Distribution
+            Convert(Distribution()).run()
+    """
+
     def run(self):
         convert = local['jupyter']['nbconvert']['--config']['config.py']
         convert['--to']['script']['--template']['_layouts/docify.tpl']['setup.ipynb']['_posts/__init__.ipynb']['_pages/*.ipynb'] & FG
@@ -45,16 +34,13 @@ class Convert(CommandBase):
         pass
 
 
-# In[21]:
-
 from setuptools import Distribution
-
-# Watcher to convert notebooks to python.
-
-# In[ ]:
 
 
 class Watch(CommandBase):
+    """Watcher to convert notebooks to python.
+    """
+
     def run(self):
         try:
             local['watchmedo']['tricks-from']['tricks.yml'] & FG
@@ -62,29 +48,12 @@ class Watch(CommandBase):
             pass
 
 
-# In[ ]:
-
-
-class Develop(develop):
-    def run(self):
-        for folder, package in zip(['_posts', '_pages'], packages):
-            try:
-                os.unlink(package)
-            except FileNotFoundError:
-                pass
-            os.symlink(folder, package)
-        develop.run(self)
-
-
-# In[ ]:
+# !jupyter nbconvert --to python --config _layouts/config.py --template _layouts/docify.tpl setup.ipynb
 
 setup(
     name="forever-whatever",
     version="0.0.0",
-    #     package_dir={'whatever': '_posts', 'forever': '_pages', },
-    packages=packages,
+    packages=find_packages(),
     cmdclass={'watch': Watch,
-              'convert': Convert,
-              'developer': Develop})
-
-# __*fin*__
+              'convert': Convert})
+# __*fin*__# 
