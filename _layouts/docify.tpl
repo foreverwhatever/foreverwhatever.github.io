@@ -8,8 +8,7 @@
 {% filter ipython2python | trim %}
 {% if ':)'[::-1] in source %}
 {% set signature, rest = source.split('):', 1) %}
-{{signature}}):{% if doc.strip() %}
-{% set spaces = 4 + signature.splitlines()[-1].__len__() - signature.splitlines()[-1].lstrip().__len__() %}
+{{signature}}):{% if doc.strip() %}{% set spaces = 4 + signature.splitlines()[-1].__len__() - signature.splitlines()[-1].lstrip().__len__() %}
 {% filter wrap_text(80-spaces) | trim | indent(spaces) %}"""{{ doc }}
 """
 {% endfilter %}{% endif %}{{rest}}

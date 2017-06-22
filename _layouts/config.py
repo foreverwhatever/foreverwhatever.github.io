@@ -3,3 +3,6 @@ c.TemplateExporter.filters = {
     'load': 'json.loads',
     'yaml': 'yaml.dump'
 }
+
+c.TemplateExporter.preprocessors = [
+    'literacy.preprocessors.Explode', 'literacy.preprocessors.Dedent']
