@@ -17,6 +17,7 @@ install:
 - conda update -q conda
 - conda info -a
 - conda create -y -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
+- pip install git+https://github.com/tonyfast/literacy
 - source activate convert
 
 script:
