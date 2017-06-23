@@ -4,7 +4,6 @@ tricks:
     patterns:
     - ./index.ipynb
     - ./setup.ipynb
-    - ./forever/*.ipynb
     ignore_patterns: ["*~*.ipynb",  "*-checkpoint.ipynb"]
     shell_command: >
         jupyter nbconvert --to custom --Exporter.file_extension='.py' --template _layouts/docify.tpl  "${watch_src_path}" & jupyter nbconvert --to markdown --config config.py --template _layouts/jekyll.md.tpl --output-dir _pages "${watch_src_path}"
@@ -13,7 +12,6 @@ tricks:
     patterns:
     - ./index.ipynb
     - ./setup.ipynb
-    - ./forever/*.ipynb
     ignore_patterns: ["*~*.ipynb",  "*-checkpoint.ipynb"]
     shell_command: >
         jupyter nbconvert --to html --config config.py --template _layouts/jekyll.html.tpl "${watch_src_path}"
@@ -29,7 +27,5 @@ tricks:
     patterns:
     - ./index.py
     - ./setup.py
-    - ./forever/*.py
-    - ./whatever/*.py
     shell_command: >
         yapf "${watch_src_path}" --in-place  && flake8 --ignore=W293,W291,E501 "${watch_src_path}"

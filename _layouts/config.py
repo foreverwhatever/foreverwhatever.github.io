@@ -5,4 +5,5 @@ c.TemplateExporter.filters = {
 }
 
 c.TemplateExporter.preprocessors = [
-    'literacy.preprocessors.Explode', 'literacy.preprocessors.Dedent']
+    'literacy.preprocessors.Explode', 'literacy.preprocessors.Dedent'
+]

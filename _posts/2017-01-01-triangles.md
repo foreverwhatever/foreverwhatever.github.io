@@ -1,8 +1,8 @@
 ---
 layout: post
-modified_date: May 29, 2017
+modified_date: June 22, 2017
 name: 2017-01-01-triangles
-path: whatever
+path: _data
 
 kernelspec:
   display_name: Python 3
@@ -30,16 +30,15 @@ language_info:
 
 
 ```python
-from fidget import function as a, when, each, stars, flips; an = the = then = a
-from copy import copy
-import pandas, requests, toolz
-%reload_ext fidget
+    from fidget import pipes as a, maps; an = the = then = a
+    from copy import copy
+    import pandas, requests, toolz
 ```
 
 
 ```python
-triangles = a.combinations(r=2).zip(list('ABC'))[each.concat().list()].concatv([list('ABC')]).list()('DEF')
-triangles
+    triangles = a.combinations(r=2).zip(list('ABC'))[maps.concat().list()].concatv([list('ABC')]).list()('DEF')
+    triangles
 ```
 
 
@@ -51,8 +50,8 @@ triangles
 
 
 ```python
-positions = {
-    'A': [-1, 0], 'B': [0, 1], 'C': [1, 0],
-    'D': [-.5, .5], 'E': [0, 0], 'F': [.5, .5],
-}
+    positions = {
+        'A': [-1, 0], 'B': [0, 1], 'C': [1, 0],
+        'D': [-.5, .5], 'E': [0, 0], 'F': [.5, .5],
+    }
 ```

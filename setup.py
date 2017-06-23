@@ -1,6 +1,7 @@
 # coding: utf-8
 
-from plumbum import local, FG  # noqa: E402
+# __*fin*__
+
 from setuptools import find_packages, Command, setup, Distribution  # noqa: E402, F401s
 import os
 
@@ -22,33 +23,36 @@ class Convert(CommandBase):
     
             from setuptools import  Distribution
             Convert(Distribution()).run()
+    
+    * Convert notebook to python code on master
+    * Format python code
+    * Convert to notebook to Markdown post on master
+    * Convert index.html
+    * Convert setup
     """
 
     def run(self):
-        convert = local['jupyter']['nbconvert']['--config']['config.py']
-        convert['--to']['script']['--template']['_layouts/docify.tpl']['setup.ipynb']['_posts/__init__.ipynb']['_pages/*.ipynb'] & FG
-        convert['--to']['markdown']['--template']['_layouts/jekyll.md.tpl']['_posts/*.ipynb']['_pages/*.ipynb'] & FG
-        convert['--to']['html']['--template']['_layouts/jekyll.html.tpl']['index.ipynb'] & FG
-        local['yapf']['-i']['-r']['_pages'] & FG
-        local['echo']["Conversion complete"] & FG
-        pass
+        get_ipython().system(
+            'jupyter nbconvert --to python --template _layouts/docify.tpl --config _layouts/config.py --output-dir whatever _data/*.ipynb'
+        )
+        get_ipython().system(
+            'jupyter nbconvert --to markdown --template _layouts/jekyll.md.tpl --config _layouts/mdconfig.py --output-dir _posts _data/*.ipynb'
+        )
+        get_ipython().system('yapf -i -r .')
+        get_ipython().system('echo "Conversion complete"')
 
 
-from setuptools import Distribution
-
-
+# 
 class Watch(CommandBase):
     """Watcher to convert notebooks to python.
     """
 
     def run(self):
         try:
-            local['watchmedo']['tricks-from']['tricks.yml'] & FG
+            get_ipython().system('watchmedo tricks-from tricks.yml')
         except KeyboardInterrupt:
             pass
 
-
-# !jupyter nbconvert --to python --config _layouts/config.py --template _layouts/docify.tpl setup.ipynb
 
 setup(
     name="forever-whatever",
@@ -56,4 +60,4 @@ setup(
     packages=find_packages(),
     cmdclass={'watch': Watch,
               'convert': Convert})
-# __*fin*__# 
+# !jupyter nbconvert --to python --template _layouts/docify.tpl --config _layouts/config.py setup.ipynb# __*fin*__
