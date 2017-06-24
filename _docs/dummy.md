@@ -1,9 +1,5 @@
 ---
-layout: post
-modified_date: June 24, 2017
-name: dummy
-path: _notebooks
-
+config_dir: /Users/tonyfast/.jupyter
 kernelspec:
   display_name: Python 3
   language: python
@@ -18,9 +14,14 @@ language_info:
   nbconvert_exporter: python
   pygments_lexer: ipython3
   version: 3.5.3
-
+metadata:
+  modified_date: June 24, 2017
+  name: dummy
+  path: _notebooks
+output_extension: .md
+output_files_dir: dummy_files
+unique_key: dummy
 ---
-
 
 # <del>`fidget`</del> <small>a `pythonic` functional programming `object`</small>
 
