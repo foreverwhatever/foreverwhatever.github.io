@@ -28,10 +28,11 @@ script:
 - git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
 - git fetch upstream
 - git reset upstream/build
-- git checkout master
 - ipython setup.py convert
 - git add _posts/*.md whatever/*.py
 - git commit -m "Convert posts and scripts automatically"
+- git checkout master
+- git merge build "Merged by travis"
 - git push -q upstream HEAD:master
 
 env:
