@@ -32,17 +32,11 @@ class Convert(CommandBase):
     """
 
     def run(self):
-        get_ipython().system(
-            'jupyter nbconvert --to python --template _layouts/docify.tpl --config _layouts/config.py --output-dir whatever _data/*.ipynb'
-        )
-        get_ipython().system(
-            'jupyter nbconvert --to markdown --template _layouts/jekyll.md.tpl --config _layouts/mdconfig.py --output-dir _posts _data/*.ipynb'
-        )
+        get_ipython().system('ipython readme.py')
         get_ipython().system('yapf -i -r .')
         get_ipython().system('echo "Conversion complete"')
 
 
-# 
 class Watch(CommandBase):
     """Watcher to convert notebooks to python.
     """
@@ -60,4 +54,4 @@ setup(
     packages=find_packages(),
     cmdclass={'watch': Watch,
               'convert': Convert})
-# !jupyter nbconvert --to python --template _layouts/docify.tpl --config _layouts/config.py setup.ipynb# __*fin*__
+# !jupyter nbconvert --config _layouts/python.py  setup.ipynb readme.ipynb# __*fin*__
