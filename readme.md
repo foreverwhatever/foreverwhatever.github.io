@@ -78,21 +78,7 @@ I personally chose __whatever__.
 
 ### Data
 
-The data 
-
-
-```python
-import nbconvert
-```
-
-configuration is 
-
-
-```python
-"_layouts/data.py"
-```
-
-.  
+The data __nbconvert__ configuration is *_layouts/data.py*
 
 
 
