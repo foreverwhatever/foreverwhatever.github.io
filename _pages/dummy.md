@@ -1,7 +1,7 @@
 ---
 layout: post
-modified_date: June 22, 2017
-name: 2017-01-01-triangles
+modified_date: June 24, 2017
+name: dummy
 path: _notebooks
 
 kernelspec:
