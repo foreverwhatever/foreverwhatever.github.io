@@ -1,15 +1,13 @@
-{% extends 'markdown.tpl' %}{%- block header scoped-%}
----
-layout: post
-{{ resources.metadata | dump | load | yaml(default_flow_style=False)}}
-{{ nb.metadata | dump | load | yaml(default_flow_style=False)}}
----
-{{super()}}
-{% endblock header %}{% block stream %}
+{% extends 'markdown.tpl' %}
+
+{% block stream %}
 ---
 {{ output.text | indent }}
 ---
-{% endblock stream %}{% block data_svg scoped -%}
+{% endblock stream %}
+
+
+{% block data_svg scoped -%}
 <div class="output_svg output_subarea {{ extra_class }}">
 {%- if output.svg_filename %}
 <img src="{{ output.svg_filename | posix_path }}"
@@ -86,3 +84,6 @@ class="unconfined"
 </div>
 {%- endblock data_latex %}
 
+{% block markdowncell scoped -%}
+{{ cell.source }}
+{% endblock markdowncell %}
