@@ -29,7 +29,7 @@ script:
 - git fetch upstream
 - git reset upstream/build
 - ipython setup.py convert
-- git add _posts/*.md whatever/*.py
+- git add *
 - git commit -m "Convert posts and scripts automatically"
 - git checkout master
 - git merge build "Merged by travis"
