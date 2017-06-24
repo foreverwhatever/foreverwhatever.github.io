@@ -42,21 +42,7 @@ __python__ copies of the collection.
 
 ### Markdown
 
-The markdown 
-
-
-```python
-import nbconvert
-```
-
-configuration is 
-
-
-```python
-"_layouts/markdown.py"
-```
-
-
+The markdown __nbconvert__ configuration is *_layouts/markdown.py*
 
 * Notebooks beginning with __Numbers__ are inferred as ___posts__
 
@@ -69,33 +55,19 @@ configuration is
 
 
 
-* Notebooks beginning with __Letters__ are inferred as ___pages__
+* Notebooks beginning with __Letters__ are inferred as ___docs__
 
 
 
 ```python
-!jupyter nbconvert --config _layouts/markdown.py --output-dir _pages _notebooks/[a-z,A-Z]*.ipynb
+!jupyter nbconvert --config _layouts/markdown.py --output-dir _docs _notebooks/[a-z,A-Z]*.ipynb
 ```
 
 
 
 ### Python
 
-The python 
-
-
-```python
-import nbconvert
-```
-
-configuration is 
-
-
-```python
-"_layouts/python.py"
-```
-
-.  The module is in a _non_-__Jekyll__ namespace;
+The python __nbconvert__ configuration is *_layouts/python.py*.  The module is in a _non_-__Jekyll__ namespace;
 I personally chose __whatever__.
 
 

@@ -1,5 +1,6 @@
 # coding: utf-8
 
+
 # `foreverwhatever.github.io` is Tony Fast's personal journal of computational documents.
 
 get_ipython().magic('load_ext literacy.template')
@@ -14,57 +15,26 @@ get_ipython().magic('load_ext literacy.template')
 # __python__ copies of the collection.
 # ### Markdown
 # 
-# The markdown
-
-import nbconvert
-
-# configuration is
-
-"_layouts/markdown.py"
-
+# The markdown __nbconvert__ configuration is *_layouts/markdown.py*
+# 
 # * Notebooks beginning with __Numbers__ are inferred as ___posts__
 
-get_ipython().system(
-    'jupyter nbconvert --config _layouts/markdown.py --output-dir _posts _notebooks/[0-9]*.ipynb'
-)
-get_ipython().system(
-    'jupyter nbconvert --config _layouts/markdown.py readme.ipynb')
+get_ipython().system('jupyter nbconvert --config _layouts/markdown.py --output-dir _posts _notebooks/[0-9]*.ipynb')
+get_ipython().system('jupyter nbconvert --config _layouts/markdown.py readme.ipynb')
 
-# * Notebooks beginning with __Letters__ are inferred as ___pages__
+# * Notebooks beginning with __Letters__ are inferred as ___docs__
 
-get_ipython().system(
-    'jupyter nbconvert --config _layouts/markdown.py --output-dir _pages _notebooks/[a-z,A-Z]*.ipynb'
-)
+get_ipython().system('jupyter nbconvert --config _layouts/markdown.py --output-dir _docs _notebooks/[a-z,A-Z]*.ipynb')
 # 
 # ### Python
 # 
-# The python
-
-import nbconvert
-
-# configuration is
-
-"_layouts/python.py"
-
-# .  The module is in a _non_-__Jekyll__ namespace;
+# The python __nbconvert__ configuration is *_layouts/python.py*.  The module is in a _non_-__Jekyll__ namespace;
 # I personally chose __whatever__.
 
-get_ipython().system(
-    'jupyter nbconvert --config _layouts/python.py --output-dir=whatever _notebooks/*.ipynb'
-)
+get_ipython().system('jupyter nbconvert --config _layouts/python.py --output-dir=whatever _notebooks/*.ipynb')
 
 # ### Data
 # 
-# The data
+# The data __nbconvert__ configuration is *_layouts/data.py*
 
-import nbconvert
-
-# configuration is
-
-"_layouts/data.py"
-
-# .
-
-get_ipython().system(
-    'jupyter nbconvert --to notebook --config _layouts/data.py _notebooks/*.ipynb'
-)
+get_ipython().system('jupyter nbconvert --to notebook --config _layouts/data.py _notebooks/*.ipynb')
