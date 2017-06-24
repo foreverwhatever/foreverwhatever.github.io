@@ -22,17 +22,16 @@ install:
 
 script:
 - set -e
-- git init
 - git config user.name "T-Bone"
 - git config user.email "tony.fast@gmail.com"
-- git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
+- git clone https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io out
+- cd out
 - git checkout master
-- git reset origin/upstream
-- git merge upstream/build
+- git merge build
 - ipython setup.py convert
 - git add *
 - git commit -m "Convert posts and scripts automatically"
-- git push -q origin HEAD:master
+- git push -q origin master
 
 env:
     global:
