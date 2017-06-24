@@ -25,10 +25,10 @@ script:
 - git init
 - git config user.name "T-Bone"
 - git config user.email "tony.fast@gmail.com"
-- git remote add origin "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
+- git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
 - git checkout master
-- git reset origin/master
-- git merge build
+- git reset origin/upstream
+- git merge upstream/build
 - ipython setup.py convert
 - git add *
 - git commit -m "Convert posts and scripts automatically"
