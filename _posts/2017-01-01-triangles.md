@@ -1,6 +1,6 @@
 ---
 layout: post
-modified_date: June 23, 2017
+modified_date: June 24, 2017
 name: 2017-01-01-triangles
 path: _data
 
