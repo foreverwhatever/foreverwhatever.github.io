@@ -1,4 +1,11 @@
-c.NbConvertApp.export_format = 'markdown'
+from nbconvert.preprocessors import Preprocessor
+
+class StripSource(Preprocessor):
+    def preprocess_cell(self, cell, resources, index):
+        if cell['cell_type'] == 'code':
+            cell['source'] = """"""
+        return cell, resources
+
 c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl'
 c.TemplateExporter.filters = {
     'dump': 'json.dumps',
@@ -12,6 +19,5 @@ c.NbConvertBase.display_data_priority = [
 ]
 
 c.TemplateExporter.preprocessors = [
-    'literacy.preprocessors.Explode', 'literacy.preprocessors.Dedent',
-    'whatever.2017-06-24-Front-Matter-Preprocessor.FrontMatter'
+    'whatever.2017-06-24-Front-Matter-Preprocessor.FrontMatter', StripSource,
 ]
