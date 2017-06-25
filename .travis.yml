@@ -11,6 +11,7 @@ install:
 - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
+- rm miniconda.sh
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
 - conda config --add channels conda-forge # For sphinxcontrib.autoprogram
@@ -30,7 +31,6 @@ script:
 - git checkout master
 - git merge build
 - ipython setup.py convert
-- git add .
 - git commit -m "Convert posts and scripts automatically"
 - git push -q upstream HEAD:master
 
