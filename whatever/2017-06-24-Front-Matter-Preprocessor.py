@@ -1,7 +1,6 @@
 # coding: utf-8
 
 # # Front Matter `nbconvert` preprocessor
-#
 # Append *metadata* and *resources* as front matter to a notebook; insert a markdown cell at the beginning of notebook.
 
 o = __name__ == '__main__'
@@ -11,7 +10,7 @@ if o:
 
 def safe(object):
     """Make sure all Mapping objects are pure python __dict__s
-    
+
     """
     if hasattr(object, 'items'):
         object = dict(object)

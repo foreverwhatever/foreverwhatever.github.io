@@ -1,9 +1,9 @@
 # coding: utf-8
 
 # # <del>`fidget`</del> <small>a `pythonic` functional programming `object`</small>
-#
+# 
 # > ...posers juxtapose juxtapositions
-#
+# 
 # > composers compose compositions
 
 from fidget import pipes as a, maps
