@@ -26,7 +26,9 @@ script:
 - git config user.name "T-Bone"
 - git config user.email "tony.fast@gmail.com"
 - git remote add upstream "https://$GH_TOKEN@github.com/foreverwhatever/foreverwhatever.github.io"
-- git checkout -b master
+- git fetch upstream
+- git checkout master
+- git merge build
 - ipython setup.py convert
 - git add .
 - git commit -m "Convert posts and scripts automatically"
