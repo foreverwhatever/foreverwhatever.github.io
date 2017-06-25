@@ -32,21 +32,22 @@ unique_key: dummy
 
 
 ```python
-from fidget import pipes as a, maps; an = the = then = a
-from copy import copy
-import pandas, requests, toolz
+
 ```
 
 
 ```python
-triangles = a.combinations(r=2).zip(list('ABC'))[maps.concat().list()].concatv([list('ABC')]).list()('DEF')
-triangles
+
 ```
 
 
+
+
+    [['A', 'B', 'C'], ['A', 'D', 'E'], ['B', 'D', 'F'], ['C', 'E', 'F']]
+
+
+
+
 ```python
-positions = {
-    'A': [-1, 0], 'B': [0, 1], 'C': [1, 0],
-    'D': [-.5, .5], 'E': [0, 0], 'F': [.5, .5],
-}
+
 ```
