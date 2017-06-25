@@ -8,7 +8,7 @@
    "source": [
     "# Front Matter `nbconvert` preprocessor\n",
     "\n",
-    "Append resources as front matter to a notebook; insert a markdown cell at the beginning of notebook."
+    "Append *metadata* and *resources* as front matter to a notebook; insert a markdown cell at the beginning of notebook."
    ]
   },
   {
@@ -24,6 +24,15 @@
     "o = __name__ == '__main__'\n",
     "if o:\n",
     "    %reload_ext literacy.template"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "_": 2
+   },
+   "source": [
+    "Make sure all Mapping objects are pure python __dict__s\n"
    ]
   },
   {
@@ -59,7 +68,7 @@
     "        source = __import__('yaml').safe_dump(\n",
     "            safe({**resources, **nb['metadata']}), default_flow_style=False)\n",
     "        nb['cells'].insert(\n",
-    "            0, __import__('nbformat').v4.new_markdown_cell(\"\"\"---\\n{}---\\n\"\"\".format(source))\n",
+    "            0, __import__('nbformat').v4.new_markdown_cell(\"\"\"---\\n{}\\n---\\n\"\"\".format(source))\n",
     "        )\n",
     "        return nb, resources"
    ]

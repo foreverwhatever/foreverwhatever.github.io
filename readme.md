@@ -106,13 +106,13 @@ I personally chose <strong>whatever</strong>.</p>
 
 ---
     [NbConvertApp] Converting notebook readme.ipynb to markdown
-    [NbConvertApp] Writing 1491 bytes to readme.md
+    [NbConvertApp] Writing 4724 bytes to readme.md
     [NbConvertApp] Converting notebook _notebooks/2017-01-01-triangles.ipynb to markdown
-    [NbConvertApp] Writing 716 bytes to _posts/2017-01-01-triangles.md
+    [NbConvertApp] Writing 795 bytes to _posts/2017-01-01-triangles.md
     [NbConvertApp] Converting notebook _notebooks/2017-06-24-Front-Matter-Preprocessor.ipynb to markdown
-    [NbConvertApp] Writing 1110 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
+    [NbConvertApp] Writing 3969 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
     [NbConvertApp] Converting notebook _notebooks/dummy.ipynb to markdown
-    [NbConvertApp] Writing 671 bytes to _docs/dummy.md
+    [NbConvertApp] Writing 750 bytes to _docs/dummy.md
 
 ---
 

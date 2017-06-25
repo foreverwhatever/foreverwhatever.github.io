@@ -24,18 +24,21 @@ get_ipython().system(
 # ### Markdown
 # 
 # The markdown __nbconvert__ configuration is *_layouts/markdown.py*
-#         !jupyter nbconvert --config _layouts/markdown.py readme.ipynb
-# 
+
+get_ipython().system(
+    'jupyter nbconvert --to markdown --config _layouts/markdown.py readme.ipynb'
+)
+
 # * Notebooks beginning with __Numbers__ are inferred as ___posts__
 
 get_ipython().system(
-    'jupyter nbconvert --config _layouts/markdown.py --output-dir _posts _notebooks/[0-9]*.ipynb'
+    'jupyter nbconvert --to markdown --config _layouts/markdown.py --output-dir _posts _notebooks/[0-9]*.ipynb'
 )
 
 # * Notebooks beginning with __Letters__ are inferred as ___docs__
 
 get_ipython().system(
-    'jupyter nbconvert --config _layouts/markdown.py --output-dir _docs _notebooks/[a-z,A-Z]*.ipynb'
+    'jupyter nbconvert --to markdown --config _layouts/markdown.py --output-dir _docs _notebooks/[a-z,A-Z]*.ipynb'
 )
 # 
 # ### Data
