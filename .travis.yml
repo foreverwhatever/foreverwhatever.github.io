@@ -31,6 +31,7 @@ script:
 - git checkout master
 - git merge -X theirs build
 - ipython setup.py convert
+- git add .
 - git commit -m "Convert posts and scripts automatically"
 - git push -q upstream HEAD:master
 
