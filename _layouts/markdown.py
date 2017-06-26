@@ -1,10 +1,11 @@
 from nbconvert.preprocessors import Preprocessor
 
 
-class StripSource(Preprocessor):
+class RawJekyllSource(Preprocessor):
+    """compat for jinja2"""
     def preprocess_cell(self, cell, resources, index):
         if cell['cell_type'] == 'code':
-            cell['source'] = """"""
+            cell['source'] = "{% raw %}"+cell['source']+"{% endraw %}"""
         return cell, resources
 
 
@@ -21,6 +22,7 @@ c.NbConvertBase.display_data_priority = [
 ]
 
 c.TemplateExporter.preprocessors = [
+    'literacy.preprocessors.JoinSource',
     'whatever.2017-06-24-Front-Matter-Preprocessor.FrontMatter',
-    StripSource,
+    RawJekyllSource,
 ]

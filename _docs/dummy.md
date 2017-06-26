@@ -1,5 +1,5 @@
 ---
-config_dir: /home/travis/.jupyter
+config_dir: /Users/tonyfast/.jupyter
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,7 +15,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: June 25, 2017
+  modified_date: June 24, 2017
   name: dummy
   path: _notebooks
 output_extension: .md
@@ -32,12 +32,15 @@ unique_key: dummy
 
 
 ```python
-
+{% raw %}    from fidget import pipes as a, maps; an = the = then = a
+    from copy import copy
+    import pandas, requests, toolz{% endraw %}
 ```
 
 
 ```python
-
+{% raw %}    triangles = a.combinations(r=2).zip(list('ABC'))[maps.concat().list()].concatv([list('ABC')]).list()('DEF')
+    triangles{% endraw %}
 ```
 
 
@@ -49,5 +52,8 @@ unique_key: dummy
 
 
 ```python
-
+{% raw %}    positions = {
+        'A': [-1, 0], 'B': [0, 1], 'C': [1, 0],
+        'D': [-.5, .5], 'E': [0, 0], 'F': [.5, .5],
+    }{% endraw %}
 ```

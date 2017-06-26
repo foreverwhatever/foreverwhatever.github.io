@@ -1,5 +1,5 @@
 ---
-config_dir: /home/travis/.jupyter
+config_dir: /Users/tonyfast/.jupyter
 kernelspec:
   display_name: Python 3
   language: python
@@ -30,16 +30,25 @@ Append *metadata* and *resources* as front matter to a notebook; insert a markdo
 
 
 ```python
-
+{% raw %}        o = __name__ == '__main__'
+        if o:
+            %reload_ext literacy.template{% endraw %}
 ```
 
 
 ```python
+{% raw %}Make sure all Mapping objects are pure python __dict__
 
+        def safe(object):
+            if hasattr(object, 'items'):
+                object = dict(object)
+                for key, value in object.items():
+                    object.update({key: safe(value)})
+            return object{% endraw %}
 ```
 
 <div class="output_markdown rendered_html output_subarea ">
-<p>Make sure all Mapping objects are pure python <strong>dict</strong>s</p>
+<p>Make sure all Mapping objects are pure python <strong>dict</strong></p>
 
 <pre><code>    def safe(object):
         if hasattr(object, 'items'):
@@ -52,7 +61,14 @@ Append *metadata* and *resources* as front matter to a notebook; insert a markdo
 
 
 ```python
-
+{% raw %}        class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
+            def preprocess(self, nb, resources={}):
+                source = __import__('yaml').safe_dump(
+                    safe({**resources, **nb['metadata']}), default_flow_style=False)
+                nb['cells'].insert(
+                    0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
+                )
+                return nb, resources{% endraw %}
 ```
 
 <div class="output_markdown rendered_html output_subarea ">
@@ -70,7 +86,8 @@ Append *metadata* and *resources* as front matter to a notebook; insert a markdo
 
 
 ```python
-
+{% raw %}        exporter = __import__('nbconvert').get_exporter('markdown')(
+            config={'TemplateExporter': {'preprocessors': ['literacy.preprocessors.Dedent', FrontMatter]}}){% endraw %}
 ```
 
 <div class="output_markdown rendered_html output_subarea ">
@@ -82,7 +99,11 @@ Append *metadata* and *resources* as front matter to a notebook; insert a markdo
 
 
 ```python
+{% raw %}---
 
+> The snippet below shows the composed code.
+
+<pre><code>{{o and exporter.from_filename('2017-06-24-Front-Matter-Preprocessor.ipynb')[0].lstrip()}}</code></pre>{% endraw %}
 ```
 
 <div class="output_markdown rendered_html output_subarea ">
@@ -123,8 +144,6 @@ o = __name__ == '__main__'
 if o:
     %reload_ext literacy.template
 ```
-Make sure all Mapping objects are pure python __dict__s
-
 
 
 ```python
@@ -143,7 +162,7 @@ class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
         source = __import__('yaml').safe_dump(
             safe({**resources, **nb['metadata']}), default_flow_style=False)
         nb['cells'].insert(
-            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
+            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}---\n""".format(source))
         )
         return nb, resources
 ```
