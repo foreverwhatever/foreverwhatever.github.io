@@ -1,5 +1,5 @@
 ---
-config_dir: /Users/tonyfast/.jupyter
+config_dir: /home/travis/.jupyter
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,7 +15,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: June 24, 2017
+  modified_date: June 25, 2017
   name: 2017-06-24-Front-Matter-Preprocessor
   path: _notebooks
 output_extension: .md
@@ -123,6 +123,8 @@ o = __name__ == '__main__'
 if o:
     %reload_ext literacy.template
 ```
+Make sure all Mapping objects are pure python __dict__s
+
 
 
 ```python
@@ -141,7 +143,7 @@ class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
         source = __import__('yaml').safe_dump(
             safe({**resources, **nb['metadata']}), default_flow_style=False)
         nb['cells'].insert(
-            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}---\n""".format(source))
+            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
         )
         return nb, resources
 ```

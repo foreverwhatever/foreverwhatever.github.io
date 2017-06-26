@@ -4,16 +4,16 @@
 
 get_ipython().magic('load_ext literacy.template')
 # ## The __build__ branch
-# 
-# The __build__ branch uses __travis-ci__ to transpile notebooks to a jekyll site on the __master__ 
+#
+# The __build__ branch uses __travis-ci__ to transpile notebooks to a jekyll site on the __master__
 # branch.  When __master__ updates, the standard github pages __jekyll__ build is used.
-# 
+#
 # ### A collection of notebooks
-# 
+#
 # Create a collection of ___notebooks__. It folder is the source of __markdown__, __json__, and
 # __python__ copies of the collection.
 # ### Python
-# 
+#
 # The python __nbconvert__ configuration is *_layouts/python.py*.  The module is in a _non_-__Jekyll__ namespace;
 # I personally chose __whatever__.
 
@@ -22,7 +22,7 @@ get_ipython().system(
 )
 
 # ### Markdown
-# 
+#
 # The markdown __nbconvert__ configuration is *_layouts/markdown.py*
 
 get_ipython().system(
@@ -40,9 +40,9 @@ get_ipython().system(
 get_ipython().system(
     'jupyter nbconvert --to markdown --config _layouts/markdown.py --output-dir _docs _notebooks/[a-z,A-Z]*.ipynb'
 )
-# 
+#
 # ### Data
-# 
+#
 # The data __nbconvert__ configuration is *_layouts/data.py*
 
 get_ipython().system(

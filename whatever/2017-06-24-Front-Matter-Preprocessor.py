@@ -36,7 +36,7 @@ exporter = __import__('nbconvert').get_exporter('markdown')(config={
     }
 })
 # ---
-# 
+#
 # > The snippet below shows the composed code.
-# 
+#
 # <pre><code>{{o and exporter.from_filename('2017-06-24-Front-Matter-Preprocessor.ipynb')[0].lstrip()}}</code></pre># __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.

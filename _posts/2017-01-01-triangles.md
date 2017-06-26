@@ -1,5 +1,5 @@
 ---
-config_dir: /Users/tonyfast/.jupyter
+config_dir: /home/travis/.jupyter
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,7 +15,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: June 24, 2017
+  modified_date: June 25, 2017
   name: 2017-01-01-triangles
   path: _notebooks
 output_extension: .md
