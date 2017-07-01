@@ -1,1 +1,1 @@
-__import__('literacy').load_ipython_extension()
+__import__('literacy').finder.load_ipython_extension()
