@@ -59,15 +59,15 @@ branch.  When <strong>master</strong> updates, the standard github pages <strong
 
 ---
 [NbConvertApp] Converting notebook readme.ipynb to markdown
-[NbConvertApp] Writing 1288 bytes to readme.md
+[NbConvertApp] Writing 7856 bytes to readme.md
 [NbConvertApp] Converting notebook whatever/2017-06-24-Front-Matter-Preprocessor.ipynb to markdown
-[NbConvertApp] Writing 1250 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
+[NbConvertApp] Writing 5362 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
 [NbConvertApp] Converting notebook whatever/2017-06-25-Preprocessor.ipynb to markdown
-[NbConvertApp] Writing 1417 bytes to _posts/2017-06-25-Preprocessor.md
+[NbConvertApp] Writing 3693 bytes to _posts/2017-06-25-Preprocessor.md
 [NbConvertApp] Converting notebook whatever/2017-06-28-Add-Cells-With-Code.ipynb to markdown
-[NbConvertApp] Writing 1249 bytes to _posts/2017-06-28-Add-Cells-With-Code.md
+[NbConvertApp] Writing 2677 bytes to _posts/2017-06-28-Add-Cells-With-Code.md
 [NbConvertApp] Converting notebook whatever/2017-06-29-GridPlot-In-Bokeh.ipynb to markdown
-[NbConvertApp] Writing 1313 bytes to _posts/2017-06-29-GridPlot-In-Bokeh.md
+[NbConvertApp] Writing 119160 bytes to _posts/2017-06-29-GridPlot-In-Bokeh.md
 [NbConvertApp] WARNING | pattern 'whatever/[a-z,A-Z]*.ipynb' matched no files
 This application is used to convert notebook files (*.ipynb) to various other
 formats.
@@ -81,51 +81,47 @@ Arguments that take values are actually convenience aliases to full
 Configurables, whose aliases are listed on the help line. For more information
 on full configurables, see '--help-all'.
 
--y
-    Answer yes to any questions instead of prompting.
---inplace
-    Run nbconvert in place, overwriting the existing notebook (only 
-    relevant when converting to notebook format)
---execute
-    Execute the notebook prior to export.
---no-prompt
-    Exclude input and output prompts from converted document.
---generate-config
-    generate default config file
---debug
-    set log level to logging.DEBUG (maximize logging output)
---stdin
-    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
 --allow-errors
     Continue notebook execution even if one of the cells throws an error and include the error message in the cell output (the default behaviour is to abort conversion). This flag is only relevant if '--execute' was specified, too.
 --stdout
     Write notebook output to stdout instead of files.
---template=<Unicode> (TemplateExporter.template_file)
-    Default: ''
-    Name of the template file to use
---writer=<DottedObjectName> (NbConvertApp.writer_class)
-    Default: 'FilesWriter'
-    Writer class used to write the  results of the conversion
---nbformat=<Enum> (NotebookExporter.nbformat_version)
-    Default: 4
-    Choices: [1, 2, 3, 4]
-    The nbformat version to write. Use this to downgrade notebooks.
+--no-prompt
+    Exclude input and output prompts from converted document.
+--execute
+    Execute the notebook prior to export.
+-y
+    Answer yes to any questions instead of prompting.
+--debug
+    set log level to logging.DEBUG (maximize logging output)
+--inplace
+    Run nbconvert in place, overwriting the existing notebook (only 
+    relevant when converting to notebook format)
+--generate-config
+    generate default config file
+--stdin
+    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
 --reveal-prefix=<Unicode> (SlidesExporter.reveal_url_prefix)
     Default: ''
     The URL prefix for reveal.js. This can be a a relative URL for a local copy
     of reveal.js, or point to a CDN.
     For speaker notes to work, a local reveal.js prefix must be used.
+--template=<Unicode> (TemplateExporter.template_file)
+    Default: ''
+    Name of the template file to use
 --post=<DottedOrNone> (NbConvertApp.postprocessor_class)
     Default: ''
     PostProcessor class used to write the results of the conversion
+--nbformat=<Enum> (NotebookExporter.nbformat_version)
+    Default: 4
+    Choices: [1, 2, 3, 4]
+    The nbformat version to write. Use this to downgrade notebooks.
 --to=<Unicode> (NbConvertApp.export_format)
     Default: 'html'
     The export format to be used, either one of the built-in formats, or a
     dotted object name that represents the import path for an `Exporter` class
---log-level=<Enum> (Application.log_level)
-    Default: 30
-    Choices: (0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL')
-    Set the log level by value or name.
+--writer=<DottedObjectName> (NbConvertApp.writer_class)
+    Default: 'FilesWriter'
+    Writer class used to write the  results of the conversion
 --output-dir=<Unicode> (FilesWriter.build_directory)
     Default: ''
     Directory to write output(s) to. Defaults to output to the directory of each
@@ -138,6 +134,10 @@ on full configurables, see '--help-all'.
     Default: ''
     overwrite base name use for output files. can only be used when converting
     one notebook at a time.
+--log-level=<Enum> (Application.log_level)
+    Default: 30
+    Choices: (0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL')
+    Set the log level by value or name.
 
 To see all available configurables, use `--help-all`
 

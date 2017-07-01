@@ -70,12 +70,28 @@ I want to set multiple inputs in the Jupyter notebook.
 </div>
 
 
-    <IPython.core.display.Javascript object>
+
+<div id="a92e3ee6-2300-43b7-a134-303c1834d912"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#a92e3ee6-2300-43b7-a134-303c1834d912');
+Jupyter.notebook.insert_cell_below(
+    "code", Jupyter.notebook.get_selected_cells_indices()[0]
+).set_text(atob("U2V0IHByb2dyYW1tYXRpY2FsbHkg8J+Srw=="))
+</script>
+</div>
 
 
 
-    <IPython.core.display.Javascript object>
-
+<div id="54a12fba-8ec3-48c4-a5f7-249919fcaedf"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#54a12fba-8ec3-48c4-a5f7-249919fcaedf');
+Jupyter.notebook.insert_cell_below(
+    "code", Jupyter.notebook.get_selected_cells_indices()[0]
+).set_text(atob("VGhlIGNvbXB1dGVyIHNlYXNkZnQgdGhpcyDwn5Ci"))
+</script>
+</div>
 
 
 
