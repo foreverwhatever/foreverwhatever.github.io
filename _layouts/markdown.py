@@ -5,10 +5,6 @@ c.TemplateExporter.filters = {
     'yaml': 'yaml.dump'
 }
 c.ExtractOutputPreprocessor.enabled = False
-c.NbConvertBase.display_data_priority = [
-    'text/html', 'text/markdown', 'image/svg+xml', 'text/latex', 'image/png',
-    'image/jpeg', 'text/plain', 'application/javascript'
-]
 
 c.TemplateExporter.preprocessors = [
     'literacy.preprocessors.JoinSource',
