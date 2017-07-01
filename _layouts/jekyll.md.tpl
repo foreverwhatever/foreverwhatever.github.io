@@ -2,9 +2,12 @@
 
 {% block stream %}
 ---
-{{ output.text | indent }}
+{{ output.text }}
 ---
 {% endblock stream %}
+
+
+{% block input %}{% endblock %}
 
 
 {% block data_svg scoped -%}

@@ -2,6 +2,5 @@ exclude:
     - '*.ipynb'
 excerpt_separator: <!--quote-->
 collections:
-  notebooks:
   docs:
     output: True

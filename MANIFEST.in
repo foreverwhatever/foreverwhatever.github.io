@@ -1,2 +1,1 @@
-recursive-include . *.md
 recursive-include whatever *.ipynb

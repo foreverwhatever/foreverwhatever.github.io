@@ -30,7 +30,7 @@ script:
 - git fetch upstream
 - git checkout master
 - git merge -X theirs build
-- ipython setup.py convert
+- ipython setup.py readme
 - git add .
 - git commit -m "Convert posts and scripts automatically"
 - git push -q upstream HEAD:master

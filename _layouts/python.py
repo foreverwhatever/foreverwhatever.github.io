@@ -8,5 +8,6 @@ c.TemplateExporter.filters = {
 c.TemplateExporter.template_file = '_layouts/docify.tpl'
 
 c.TemplateExporter.preprocessors = [
-    'literacy.preprocessors.Explode', 'literacy.preprocessors.Dedent'
+    'literacy.preprocessors.NumberCell', 'literacy.preprocessors.Explode',
+    'literacy.preprocessors.Dedent'
 ]
