@@ -1,1 +1,1 @@
-get_ipython().magic('load_ext literacy')
+__import__('literacy').load_ipython_extension()
