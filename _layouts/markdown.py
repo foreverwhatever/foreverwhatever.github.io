@@ -1,4 +1,4 @@
-c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl'
+# c.TemplateExporter.template_file = '_layouts/jekyll.md.tpl'
 c.TemplateExporter.filters = {
     'dump': 'json.dumps',
     'load': 'json.loads',
