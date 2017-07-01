@@ -9,6 +9,16 @@
 
 {% block input %}{% endblock %}
 
+{%- block data_javascript scoped %}
+{% set div_id = uuid4() %}
+<div id="{{ div_id }}"></div>
+<div class="output_subarea output_javascript {{ extra_class }}">
+<script type="text/javascript">
+var element = $('#{{ div_id }}');
+{{ output.data['application/javascript'] }}
+</script>
+</div>
+{%- endblock -%}
 
 {% block data_svg scoped -%}
 <div class="output_svg output_subarea {{ extra_class }}">
