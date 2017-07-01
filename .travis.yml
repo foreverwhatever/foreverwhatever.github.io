@@ -19,7 +19,7 @@ install:
 - conda info -a
 - conda create -y -q -n convert python=$TRAVIS_PYTHON_VERSION jupyter nbconvert pyyaml
 - source activate convert
-- pip install git+https://github.com/tonyfast/literacy yapf
+- pip install -r requirements.txt
 
 script:
 - set -e
