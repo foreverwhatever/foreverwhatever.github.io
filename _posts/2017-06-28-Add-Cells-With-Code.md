@@ -71,10 +71,10 @@ I want to set multiple inputs in the Jupyter notebook.
 
 
 
-<div id="17b1590a-e73f-4c1a-b2d6-269a22f4c9bc"></div>
+<div id="43007f54-8b61-472e-987b-8d52dcf1fabd"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#17b1590a-e73f-4c1a-b2d6-269a22f4c9bc');
+var element = $('#43007f54-8b61-472e-987b-8d52dcf1fabd');
 Jupyter.notebook.insert_cell_below(
     "code", Jupyter.notebook.get_selected_cells_indices()[0]
 ).set_text(atob("U2V0IHByb2dyYW1tYXRpY2FsbHkg8J+Srw=="))
@@ -83,10 +83,10 @@ Jupyter.notebook.insert_cell_below(
 
 
 
-<div id="702675f8-3c10-4125-8497-3e775f8b3356"></div>
+<div id="1f5f07ae-c134-404c-91f7-d5a80a7d89c4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#702675f8-3c10-4125-8497-3e775f8b3356');
+var element = $('#1f5f07ae-c134-404c-91f7-d5a80a7d89c4');
 Jupyter.notebook.insert_cell_below(
     "code", Jupyter.notebook.get_selected_cells_indices()[0]
 ).set_text(atob("VGhlIGNvbXB1dGVyIHNlYXNkZnQgdGhpcyDwn5Ci"))

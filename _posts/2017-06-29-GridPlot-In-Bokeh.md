@@ -50,10 +50,10 @@ plotting.output_notebook()</code></pre>
 
 
 
-<div id="431afd0c-8e8b-482f-aadb-f22384575815"></div>
+<div id="b42877be-e98b-4c92-adbb-b678d444bd35"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#431afd0c-8e8b-482f-aadb-f22384575815');
+var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
 
 (function(global) {
   function now() {
