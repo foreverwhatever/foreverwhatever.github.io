@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 1, 2017
+  modified_date: July 2, 2017
   name: 2017-06-28-Add-Cells-With-Code
   path: whatever
 output_extension: .md
@@ -71,10 +71,10 @@ I want to set multiple inputs in the Jupyter notebook.
 
 
 
-<div id="a92e3ee6-2300-43b7-a134-303c1834d912"></div>
+<div id="17b1590a-e73f-4c1a-b2d6-269a22f4c9bc"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#a92e3ee6-2300-43b7-a134-303c1834d912');
+var element = $('#17b1590a-e73f-4c1a-b2d6-269a22f4c9bc');
 Jupyter.notebook.insert_cell_below(
     "code", Jupyter.notebook.get_selected_cells_indices()[0]
 ).set_text(atob("U2V0IHByb2dyYW1tYXRpY2FsbHkg8J+Srw=="))
@@ -83,10 +83,10 @@ Jupyter.notebook.insert_cell_below(
 
 
 
-<div id="54a12fba-8ec3-48c4-a5f7-249919fcaedf"></div>
+<div id="702675f8-3c10-4125-8497-3e775f8b3356"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#54a12fba-8ec3-48c4-a5f7-249919fcaedf');
+var element = $('#702675f8-3c10-4125-8497-3e775f8b3356');
 Jupyter.notebook.insert_cell_below(
     "code", Jupyter.notebook.get_selected_cells_indices()[0]
 ).set_text(atob("VGhlIGNvbXB1dGVyIHNlYXNkZnQgdGhpcyDwn5Ci"))
