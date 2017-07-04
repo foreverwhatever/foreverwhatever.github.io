@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 2, 2017
+  modified_date: July 4, 2017
   name: 2017-06-25-Preprocessor
   path: whatever
 output_extension: .md

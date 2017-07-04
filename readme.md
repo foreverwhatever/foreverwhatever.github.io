@@ -58,128 +58,8 @@ branch.  When <strong>master</strong> updates, the standard github pages <strong
 </div>
 
 ---
-
-# coding: utf-8
-
-# # Front Matter `nbconvert` preprocessor
-# 
-# Append *metadata* and *resources* as front matter to a notebook; insert a markdown cell at the beginning of notebook.
-
-# In[ ]:
-
-
-o = __name__ == '__main__'
-if o:
-    get_ipython().magic('reload_ext literacy')
-
-
-# <code>safe</code> will make sure all Mapping objects are pure python __dict__
-# 
-
-# In[ ]:
-
-
-def safe(object):
-    if hasattr(object, 'items'):
-        object = dict(object)
-        for key, value in object.items():
-            object.update({key: safe(value)})
-    return object
-
-
-# <code>FrontMatter</code> appends the notebook metadata as a markdown cell at the beginning of the ntoebook.
-# 
-
-# In[ ]:
-
-
-class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
-    def preprocess(self, nb, resources={}):
-        source = __import__('yaml').safe_dump(
-            safe({**resources, **nb['metadata']}), default_flow_style=False)
-        nb['cells'].insert(
-            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
-        )
-        return nb, resources
-
-
-# In[ ]:
-
-
-exporter = __import__('nbconvert').get_exporter('markdown')(
-    config={'TemplateExporter': {'preprocessors': [FrontMatter]}})
-
-
-# ---
-# 
-# > The snippet below shows the composed code.
-# 
-# <pre><code>{{o and exporter.from_filename('2017-06-24-Front-Matter-Preprocessor.ipynb')[0].lstrip()}}</code></pre>
-
-# __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.
-
 [NbConvertApp] Converting notebook readme.ipynb to markdown
-[NbConvertApp] Writing 9242 bytes to readme.md
-
-# coding: utf-8
-
-# # Front Matter `nbconvert` preprocessor
-# 
-# Append *metadata* and *resources* as front matter to a notebook; insert a markdown cell at the beginning of notebook.
-
-# In[ ]:
-
-
-o = __name__ == '__main__'
-if o:
-    get_ipython().magic('reload_ext literacy')
-
-
-# <code>safe</code> will make sure all Mapping objects are pure python __dict__
-# 
-
-# In[ ]:
-
-
-def safe(object):
-    if hasattr(object, 'items'):
-        object = dict(object)
-        for key, value in object.items():
-            object.update({key: safe(value)})
-    return object
-
-
-# <code>FrontMatter</code> appends the notebook metadata as a markdown cell at the beginning of the ntoebook.
-# 
-
-# In[ ]:
-
-
-class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
-    def preprocess(self, nb, resources={}):
-        source = __import__('yaml').safe_dump(
-            safe({**resources, **nb['metadata']}), default_flow_style=False)
-        nb['cells'].insert(
-            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
-        )
-        return nb, resources
-
-
-# In[ ]:
-
-
-exporter = __import__('nbconvert').get_exporter('markdown')(
-    config={'TemplateExporter': {'preprocessors': [FrontMatter]}})
-
-
-# ---
-# 
-# > The snippet below shows the composed code.
-# 
-# <pre><code>{{o and exporter.from_filename('2017-06-24-Front-Matter-Preprocessor.ipynb')[0].lstrip()}}</code></pre>
-
-# __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.
-
+[NbConvertApp] Writing 13790 bytes to readme.md
 [NbConvertApp] Converting notebook whatever/2017-06-24-Front-Matter-Preprocessor.ipynb to markdown
 [NbConvertApp] Writing 12045 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
 [NbConvertApp] Converting notebook whatever/2017-06-25-Preprocessor.ipynb to markdown
@@ -191,66 +71,6 @@ exporter = __import__('nbconvert').get_exporter('markdown')(
 [NbConvertApp] Converting notebook whatever/2017-07-02-Sierpinski triangle in Bokeh.ipynb to markdown
 [NbConvertApp] Writing 2227292 bytes to _posts/2017-07-02-Sierpinski triangle in Bokeh.md
 [NbConvertApp] WARNING | pattern 'whatever/[a-z,A-Z]*.ipynb' matched no files
-
-# coding: utf-8
-
-# # Front Matter `nbconvert` preprocessor
-# 
-# Append *metadata* and *resources* as front matter to a notebook; insert a markdown cell at the beginning of notebook.
-
-# In[ ]:
-
-
-o = __name__ == '__main__'
-if o:
-    get_ipython().magic('reload_ext literacy')
-
-
-# <code>safe</code> will make sure all Mapping objects are pure python __dict__
-# 
-
-# In[ ]:
-
-
-def safe(object):
-    if hasattr(object, 'items'):
-        object = dict(object)
-        for key, value in object.items():
-            object.update({key: safe(value)})
-    return object
-
-
-# <code>FrontMatter</code> appends the notebook metadata as a markdown cell at the beginning of the ntoebook.
-# 
-
-# In[ ]:
-
-
-class FrontMatter(__import__('nbconvert').preprocessors.Preprocessor):
-    def preprocess(self, nb, resources={}):
-        source = __import__('yaml').safe_dump(
-            safe({**resources, **nb['metadata']}), default_flow_style=False)
-        nb['cells'].insert(
-            0, __import__('nbformat').v4.new_markdown_cell("""---\n{}\n---\n""".format(source))
-        )
-        return nb, resources
-
-
-# In[ ]:
-
-
-exporter = __import__('nbconvert').get_exporter('markdown')(
-    config={'TemplateExporter': {'preprocessors': [FrontMatter]}})
-
-
-# ---
-# 
-# > The snippet below shows the composed code.
-# 
-# <pre><code>{{o and exporter.from_filename('2017-06-24-Front-Matter-Preprocessor.ipynb')[0].lstrip()}}</code></pre>
-
-# __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.
-
 This application is used to convert notebook files (*.ipynb) to various other
 formats.
 
@@ -263,43 +83,32 @@ Arguments that take values are actually convenience aliases to full
 Configurables, whose aliases are listed on the help line. For more information
 on full configurables, see '--help-all'.
 
---stdin
-    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
---debug
-    set log level to logging.DEBUG (maximize logging output)
---execute
-    Execute the notebook prior to export.
---stdout
-    Write notebook output to stdout instead of files.
---allow-errors
-    Continue notebook execution even if one of the cells throws an error and include the error message in the cell output (the default behaviour is to abort conversion). This flag is only relevant if '--execute' was specified, too.
---generate-config
-    generate default config file
--y
-    Answer yes to any questions instead of prompting.
---debug
-    set log level to logging.DEBUG (maximize logging output)
 --inplace
     Run nbconvert in place, overwriting the existing notebook (only 
     relevant when converting to notebook format)
+-y
+    Answer yes to any questions instead of prompting.
+--stdout
+    Write notebook output to stdout instead of files.
+--execute
+    Execute the notebook prior to export.
+--allow-errors
+    Continue notebook execution even if one of the cells throws an error and include the error message in the cell output (the default behaviour is to abort conversion). This flag is only relevant if '--execute' was specified, too.
+--debug
+    set log level to logging.DEBUG (maximize logging output)
+--stdin
+    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
 --no-prompt
     Exclude input and output prompts from converted document.
---output-dir=<Unicode> (FilesWriter.build_directory)
-    Default: ''
-    Directory to write output(s) to. Defaults to output to the directory of each
-    notebook. To recover previous default behaviour (outputting to the current
-    working directory) use . as the flag value.
---reveal-prefix=<Unicode> (SlidesExporter.reveal_url_prefix)
-    Default: ''
-    The URL prefix for reveal.js. This can be a a relative URL for a local copy
-    of reveal.js, or point to a CDN.
-    For speaker notes to work, a local reveal.js prefix must be used.
+--generate-config
+    generate default config file
+--to=<Unicode> (NbConvertApp.export_format)
+    Default: 'html'
+    The export format to be used, either one of the built-in formats, or a
+    dotted object name that represents the import path for an `Exporter` class
 --template=<Unicode> (TemplateExporter.template_file)
     Default: ''
     Name of the template file to use
---writer=<DottedObjectName> (NbConvertApp.writer_class)
-    Default: 'FilesWriter'
-    Writer class used to write the  results of the conversion
 --post=<DottedOrNone> (NbConvertApp.postprocessor_class)
     Default: ''
     PostProcessor class used to write the results of the conversion
@@ -307,21 +116,30 @@ on full configurables, see '--help-all'.
     Default: ''
     overwrite base name use for output files. can only be used when converting
     one notebook at a time.
---to=<Unicode> (NbConvertApp.export_format)
-    Default: 'html'
-    The export format to be used, either one of the built-in formats, or a
-    dotted object name that represents the import path for an `Exporter` class
+--writer=<DottedObjectName> (NbConvertApp.writer_class)
+    Default: 'FilesWriter'
+    Writer class used to write the  results of the conversion
+--reveal-prefix=<Unicode> (SlidesExporter.reveal_url_prefix)
+    Default: ''
+    The URL prefix for reveal.js. This can be a a relative URL for a local copy
+    of reveal.js, or point to a CDN.
+    For speaker notes to work, a local reveal.js prefix must be used.
 --nbformat=<Enum> (NotebookExporter.nbformat_version)
     Default: 4
     Choices: [1, 2, 3, 4]
     The nbformat version to write. Use this to downgrade notebooks.
---config=<Unicode> (JupyterApp.config_file)
+--output-dir=<Unicode> (FilesWriter.build_directory)
     Default: ''
-    Full path of a config file.
+    Directory to write output(s) to. Defaults to output to the directory of each
+    notebook. To recover previous default behaviour (outputting to the current
+    working directory) use . as the flag value.
 --log-level=<Enum> (Application.log_level)
     Default: 30
     Choices: (0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL')
     Set the log level by value or name.
+--config=<Unicode> (JupyterApp.config_file)
+    Default: ''
+    Full path of a config file.
 
 To see all available configurables, use `--help-all`
 
@@ -371,34 +189,3 @@ Examples
 
 
 ---
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h3 id="Scripts">Scripts<a class="anchor-link" href="#Scripts">&#182;</a></h3>
-<pre><code>    !mkdir scripts
-    !jupyter nbconvert --to python --config python.py --output-dir scripts whatever/*.ipynb</code></pre>
-
-</div>
-
----
-mkdir: scripts: File exists
-[NbConvertApp] Converting notebook whatever/2017-06-24-Front-Matter-Preprocessor.ipynb to python
-[NbConvertApp] Writing 1559 bytes to scripts/2017-06-24-Front-Matter-Preprocessor.py
-[NbConvertApp] Converting notebook whatever/2017-06-25-Preprocessor.ipynb to python
-[NbConvertApp] Writing 2152 bytes to scripts/2017-06-25-Preprocessor.py
-[NbConvertApp] Converting notebook whatever/2017-06-28-Add-Cells-With-Code.ipynb to python
-[NbConvertApp] Writing 1391 bytes to scripts/2017-06-28-Add-Cells-With-Code.py
-[NbConvertApp] Converting notebook whatever/2017-06-29-GridPlot-In-Bokeh.ipynb to python
-[NbConvertApp] Writing 2350 bytes to scripts/2017-06-29-GridPlot-In-Bokeh.py
-[NbConvertApp] Converting notebook whatever/2017-07-02-Sierpinski triangle in Bokeh.ipynb to python
-[NbConvertApp] Writing 7741 bytes to scripts/2017-07-02-Sierpinski triangle in Bokeh.py
-
----
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h3 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h3><p>The data <strong>nbconvert</strong> configuration is <em>_layouts/data.py</em></p>
-
-<pre><code>    # !jupyter nbconvert --to notebook --config _layouts/data.py _whatever/*.ipynb</code></pre>
-
-</div>

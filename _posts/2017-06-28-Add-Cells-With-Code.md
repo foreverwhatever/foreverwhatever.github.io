@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 2, 2017
+  modified_date: July 4, 2017
   name: 2017-06-28-Add-Cells-With-Code
   path: whatever
 output_extension: .md
@@ -34,64 +34,7 @@ I want to set multiple inputs in the Jupyter notebook.
 
 
 
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="Javascript">Javascript<a class="anchor-link" href="#Javascript">&#182;</a></h2><ul>
-<li><p>The <code>next_input</code> is created using the <code>Jupyter</code> Javascript API.</p>
 
-<pre><code>  next_input = """Jupyter.notebook.insert_cell_below(
-      "code", Jupyter.notebook.get_selected_cells_indices()[0]
-  ).set_text(atob("{}"))""".format</code></pre>
-</li>
-</ul>
-
-</div>
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2>
-<pre><code>    from IPython.display import Javascript, display
-    from IPython.utils.py3compat import str_to_bytes, bytes_to_str
-    from base64 import b64encode
-
-</code></pre>
-<p>Compose the <code>next_input</code> and display the Javascript.</p>
-
-<pre><code>    def display_input(code):
-        display(Javascript(next_input(bytes_to_str(b64encode(str_to_bytes(code))))))</code></pre>
-
-</div>
-
-
-<div class="output_markdown rendered_html output_subarea ">
-
-<pre><code>    display_input('Set programmatically 💯')
-    display_input('The computer seasdft this 🐢')</code></pre>
-
-</div>
-
-
-
-<div id="43007f54-8b61-472e-987b-8d52dcf1fabd"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#43007f54-8b61-472e-987b-8d52dcf1fabd');
-Jupyter.notebook.insert_cell_below(
-    "code", Jupyter.notebook.get_selected_cells_indices()[0]
-).set_text(atob("U2V0IHByb2dyYW1tYXRpY2FsbHkg8J+Srw=="))
-</script>
-</div>
-
-
-
-<div id="1f5f07ae-c134-404c-91f7-d5a80a7d89c4"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#1f5f07ae-c134-404c-91f7-d5a80a7d89c4');
-Jupyter.notebook.insert_cell_below(
-    "code", Jupyter.notebook.get_selected_cells_indices()[0]
-).set_text(atob("VGhlIGNvbXB1dGVyIHNlYXNkZnQgdGhpcyDwn5Ci"))
-</script>
-</div>
 
 
 

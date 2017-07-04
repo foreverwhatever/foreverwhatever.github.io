@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 2, 2017
+  modified_date: July 4, 2017
   name: 2017-06-29-GridPlot-In-Bokeh
   path: whatever
 output_extension: .md
@@ -32,28 +32,152 @@ DataFrame aware linked axis exploration of a dataframe.
 
 
 
+    ---------------------------------------------------------------------------
 
-<div class="output_markdown rendered_html output_subarea ">
+    ImportError                               Traceback (most recent call last)
 
-<pre><code>import pandas as pd; from bokeh import plotting, models, resources, layouts
-plotting.output_notebook()</code></pre>
+    ~/literacy2/literacy/main.ipynb in <module>()
 
-</div>
+
+    ImportError: No module named 'template'
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    ImportError                               Traceback (most recent call last)
+
+    ~/literacy2/literacy/repl.ipynb in <module>()
+
+
+    ImportError: No module named 'exporters'
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    ImportError                               Traceback (most recent call last)
+
+    ~/literacy2/literacy/template.ipynb in <module>()
+
+
+    ~/literacy2/literacy/repl.ipynb in <module>()
+
+
+    ~/literacy2/literacy/exporters.ipynb in <module>()
+
+
+    ImportError: No module named 'nbconvert.exportfers'
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    ImportError                               Traceback (most recent call last)
+
+    <ipython-input-1-613efd0e0404> in <module>()
+    ----> 1 get_ipython().magic('load_ext literacy')
+    
+
+    ~/anaconda/lib/python3.5/site-packages/IPython/core/interactiveshell.py in magic(self, arg_s)
+       2144         magic_name, _, magic_arg_s = arg_s.partition(' ')
+       2145         magic_name = magic_name.lstrip(prefilter.ESC_MAGIC)
+    -> 2146         return self.run_line_magic(magic_name, magic_arg_s)
+       2147 
+       2148     #-------------------------------------------------------------------------
+
+
+    ~/anaconda/lib/python3.5/site-packages/IPython/core/interactiveshell.py in run_line_magic(self, magic_name, line)
+       2065                 kwargs['local_ns'] = sys._getframe(stack_depth).f_locals
+       2066             with self.builtin_trap:
+    -> 2067                 result = fn(*args,**kwargs)
+       2068             return result
+       2069 
+
+
+    <decorator-gen-65> in load_ext(self, module_str)
+
+
+    ~/anaconda/lib/python3.5/site-packages/IPython/core/magic.py in <lambda>(f, *a, **k)
+        185     # but it's overkill for just that one bit of state.
+        186     def magic_deco(arg):
+    --> 187         call = lambda f, *a, **k: f(*a, **k)
+        188 
+        189         if callable(arg):
+
+
+    ~/anaconda/lib/python3.5/site-packages/IPython/core/magics/extension.py in load_ext(self, module_str)
+         31         if not module_str:
+         32             raise UsageError('Missing module name.')
+    ---> 33         res = self.shell.extension_manager.load_extension(module_str)
+         34 
+         35         if res == 'already loaded':
+
+
+    ~/anaconda/lib/python3.5/site-packages/IPython/core/extensions.py in load_extension(self, module_str)
+         83             if module_str not in sys.modules:
+         84                 with prepended_to_syspath(self.ipython_extension_dir):
+    ---> 85                     mod = import_module(module_str)
+         86                     if mod.__file__.startswith(self.ipython_extension_dir):
+         87                         print(("Loading extensions from {dir} is deprecated. "
+
+
+    ~/anaconda/lib/python3.5/importlib/__init__.py in import_module(name, package)
+        124                 break
+        125             level += 1
+    --> 126     return _bootstrap._gcd_import(name[level:], package, level)
+        127 
+        128 
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap.py in _gcd_import(name, package, level)
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap.py in _find_and_load(name, import_)
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap.py in _find_and_load_unlocked(name, import_)
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap.py in _load_unlocked(spec)
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap_external.py in exec_module(self, module)
+
+
+    ~/anaconda/lib/python3.5/importlib/_bootstrap.py in _call_with_frames_removed(f, *args, **kwds)
+
+
+    ~/literacy2/literacy/__init__.py in <module>()
+          1 __import__('importable').load_ipython_extension()
+    ----> 2 from .main import *
+    
+
+    ~/literacy2/literacy/main.ipynb in <module>()
+
+
+    ~/literacy2/literacy/template.ipynb in <module>()
+
+
+    ImportError: No module named 'repl'
+
+
+
 
 <div class="output_html rendered_html output_subarea ">
 
     <div class="bk-root">
         <a href="http://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-        <span id="a83af947-3102-46e2-b765-e6dfee9778a7">Loading BokehJS ...</span>
+        <span id="4e1f30d6-0f5c-44b8-9201-c222fd2c035c">Loading BokehJS ...</span>
     </div>
 </div>
 
 
 
-<div id="b42877be-e98b-4c92-adbb-b678d444bd35"></div>
+<div id="c562c4ae-c47f-4388-9d5d-c7be3aad5511"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
+var element = $('#c562c4ae-c47f-4388-9d5d-c7be3aad5511');
 
 (function(global) {
   function now() {
@@ -92,7 +216,7 @@ var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
 
   function display_loaded() {
     if (window.Bokeh !== undefined) {
-      var el = document.getElementById("a83af947-3102-46e2-b765-e6dfee9778a7");
+      var el = document.getElementById("4e1f30d6-0f5c-44b8-9201-c222fd2c035c");
       el.textContent = "BokehJS " + Bokeh.version + " successfully loaded.";
     } else if (Date.now() < window._bokeh_timeout) {
       setTimeout(display_loaded, 100)
@@ -135,9 +259,9 @@ var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
       console.log("Bokeh: injecting script tag for BokehJS library: ", url);
       document.getElementsByTagName("head")[0].appendChild(s);
     }
-  };var element = document.getElementById("a83af947-3102-46e2-b765-e6dfee9778a7");
+  };var element = document.getElementById("4e1f30d6-0f5c-44b8-9201-c222fd2c035c");
   if (element == null) {
-    console.log("Bokeh: ERROR: autoload.js configured with elementid 'a83af947-3102-46e2-b765-e6dfee9778a7' but no matching script tag was found. ")
+    console.log("Bokeh: ERROR: autoload.js configured with elementid '4e1f30d6-0f5c-44b8-9201-c222fd2c035c' but no matching script tag was found. ")
     return false;
   }
 
@@ -154,7 +278,7 @@ var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
     
     function(Bokeh) {
       
-      document.getElementById("a83af947-3102-46e2-b765-e6dfee9778a7").textContent = "BokehJS is loading...";
+      document.getElementById("4e1f30d6-0f5c-44b8-9201-c222fd2c035c").textContent = "BokehJS is loading...";
     },
     function(Bokeh) {
       console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css");
@@ -177,7 +301,7 @@ var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       window._bokeh_failed_load = true;
     } else if (force !== true) {
-      var cell = $(document.getElementById("a83af947-3102-46e2-b765-e6dfee9778a7")).parents('.cell').data().cell;
+      var cell = $(document.getElementById("4e1f30d6-0f5c-44b8-9201-c222fd2c035c")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
 
@@ -197,15 +321,13 @@ var element = $('#b42877be-e98b-4c92-adbb-b678d444bd35');
 </div>
 
 
-<div class="output_markdown rendered_html output_subarea ">
-<ul>
-<li>Use pandas testing data for the demostration.</li>
-</ul>
-<hr>
 
-<pre><code>df = pd.util.testing.makeDataFrame().reset_index(drop=True)</code></pre>
+      File "<ipython-input-3-77df201b137f>", line 1
+        * Use pandas testing data for the demostration.
+                   ^
+    SyntaxError: invalid syntax
 
-</div>
+
 
 
 <div class="output_markdown rendered_html output_subarea ">
