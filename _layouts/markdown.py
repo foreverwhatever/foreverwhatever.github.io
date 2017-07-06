@@ -12,5 +12,4 @@ c.NbConvertBase.display_data_priority = [
 
 c.TemplateExporter.preprocessors = [
     'whatever.2017-06-24-Front-Matter-Preprocessor.FrontMatter',
-    'literacy.preprocessors.JoinSource',
 ]
