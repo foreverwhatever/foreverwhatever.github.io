@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 6, 2017
+  modified_date: July 7, 2017
   name: 2017-07-02-Sierpinski triangle in Bokeh
   path: whatever
 output_extension: .md
@@ -46,10 +46,10 @@ unique_key: 2017-07-02-Sierpinski triangle in Bokeh
 
 
 
-<div id="401a6af0-e070-4494-9fde-e6c98e86f699"></div>
+<div id="540adae2-7a31-4b8d-a2a1-54418962f4c3"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#401a6af0-e070-4494-9fde-e6c98e86f699');
+var element = $('#540adae2-7a31-4b8d-a2a1-54418962f4c3');
 
 (function(global) {
   function now() {

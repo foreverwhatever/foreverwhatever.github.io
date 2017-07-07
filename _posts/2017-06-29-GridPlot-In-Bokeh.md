@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 6, 2017
+  modified_date: July 7, 2017
   name: 2017-06-29-GridPlot-In-Bokeh
   path: whatever
 output_extension: .md
@@ -174,10 +174,10 @@ DataFrame aware linked axis exploration of a dataframe.
 
 
 
-<div id="6350dce5-1c5e-48dd-8608-9b527cd2f2dd"></div>
+<div id="794a6a46-788a-4983-b7c8-17697df57a61"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6350dce5-1c5e-48dd-8608-9b527cd2f2dd');
+var element = $('#794a6a46-788a-4983-b7c8-17697df57a61');
 
 (function(global) {
   function now() {
