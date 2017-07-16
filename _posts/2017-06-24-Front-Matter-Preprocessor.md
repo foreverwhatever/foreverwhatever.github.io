@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 7, 2017
+  modified_date: July 16, 2017
   name: 2017-06-24-Front-Matter-Preprocessor
   path: whatever
 output_extension: .md
