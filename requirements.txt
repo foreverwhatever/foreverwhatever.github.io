@@ -1,3 +1,4 @@
 git+https://github.com/tonyfast/importable
 git+https://github.com/tonyfast/literacy
 yapf
+toolz
