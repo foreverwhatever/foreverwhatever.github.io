@@ -16,7 +16,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: July 16, 2017
+  modified_date: July 17, 2017
   name: readme
   path: ''
 output_extension: .md
@@ -55,4 +55,20 @@ branch.  When <strong>master</strong> updates, the standard github pages <strong
 </ul>
 
 </div>
+
+---
+[NbConvertApp] Converting notebook readme.ipynb to markdown
+[NbConvertApp] Writing 2191 bytes to readme.md
+[NbConvertApp] Converting notebook whatever/2017-06-24-Front-Matter-Preprocessor.ipynb to markdown
+[NbConvertApp] Writing 12045 bytes to _posts/2017-06-24-Front-Matter-Preprocessor.md
+[NbConvertApp] Converting notebook whatever/2017-06-25-Preprocessor.ipynb to markdown
+[NbConvertApp] Writing 3693 bytes to _posts/2017-06-25-Preprocessor.md
+[NbConvertApp] Converting notebook whatever/2017-06-28-Add-Cells-With-Code.ipynb to markdown
+[NbConvertApp] Writing 773 bytes to _posts/2017-06-28-Add-Cells-With-Code.md
+[NbConvertApp] Converting notebook whatever/2017-06-29-GridPlot-In-Bokeh.ipynb to markdown
+[NbConvertApp] Writing 123163 bytes to _posts/2017-06-29-GridPlot-In-Bokeh.md
+[NbConvertApp] Converting notebook whatever/2017-07-02-Sierpinski triangle in Bokeh.ipynb to markdown
+[NbConvertApp] Writing 2227292 bytes to _posts/2017-07-02-Sierpinski triangle in Bokeh.md
+
+---
 

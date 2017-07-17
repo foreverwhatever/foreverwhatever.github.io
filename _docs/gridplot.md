@@ -16,11 +16,11 @@ language_info:
   version: 3.5.3
 metadata:
   modified_date: July 17, 2017
-  name: 2017-07-16-Grid-Plot-Revisited
+  name: gridplot
   path: whatever
 output_extension: .md
-output_files_dir: 2017-07-16-Grid-Plot-Revisited_files
-unique_key: 2017-07-16-Grid-Plot-Revisited
+output_files_dir: gridplot_files
+unique_key: gridplot
 
 ---
 
@@ -33,16 +33,16 @@ This notebook designs a Object Oriented/Functional API for interactive grid plot
 
     <div class="bk-root">
         <a href="http://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-        <span id="9c3ca716-1a97-43e3-b960-e799c8846f3d">Loading BokehJS ...</span>
+        <span id="1854e2ce-af79-4542-9248-616d42097d13">Loading BokehJS ...</span>
     </div>
 </div>
 
 
 
-<div id="ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f"></div>
+<div id="92dee8cb-17be-4ae0-8e64-fdf98c765003"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f');
+var element = $('#92dee8cb-17be-4ae0-8e64-fdf98c765003');
 
 (function(global) {
   function now() {
@@ -81,7 +81,7 @@ var element = $('#ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f');
 
   function display_loaded() {
     if (window.Bokeh !== undefined) {
-      var el = document.getElementById("9c3ca716-1a97-43e3-b960-e799c8846f3d");
+      var el = document.getElementById("1854e2ce-af79-4542-9248-616d42097d13");
       el.textContent = "BokehJS " + Bokeh.version + " successfully loaded.";
     } else if (Date.now() < window._bokeh_timeout) {
       setTimeout(display_loaded, 100)
@@ -124,9 +124,9 @@ var element = $('#ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f');
       console.log("Bokeh: injecting script tag for BokehJS library: ", url);
       document.getElementsByTagName("head")[0].appendChild(s);
     }
-  };var element = document.getElementById("9c3ca716-1a97-43e3-b960-e799c8846f3d");
+  };var element = document.getElementById("1854e2ce-af79-4542-9248-616d42097d13");
   if (element == null) {
-    console.log("Bokeh: ERROR: autoload.js configured with elementid '9c3ca716-1a97-43e3-b960-e799c8846f3d' but no matching script tag was found. ")
+    console.log("Bokeh: ERROR: autoload.js configured with elementid '1854e2ce-af79-4542-9248-616d42097d13' but no matching script tag was found. ")
     return false;
   }
 
@@ -639,7 +639,7 @@ var element = $('#ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f');
     
     function(Bokeh) {
       
-      document.getElementById("9c3ca716-1a97-43e3-b960-e799c8846f3d").textContent = "BokehJS is loading...";
+      document.getElementById("1854e2ce-af79-4542-9248-616d42097d13").textContent = "BokehJS is loading...";
     },
     function(Bokeh) {
       console.log("Bokeh: injecting raw CSS");
@@ -662,7 +662,7 @@ var element = $('#ca0cb95f-46c4-483f-a21a-f0f6b31e7f3f');
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       window._bokeh_failed_load = true;
     } else if (force !== true) {
-      var cell = $(document.getElementById("9c3ca716-1a97-43e3-b960-e799c8846f3d")).parents('.cell').data().cell;
+      var cell = $(document.getElementById("1854e2ce-af79-4542-9248-616d42097d13")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
 
