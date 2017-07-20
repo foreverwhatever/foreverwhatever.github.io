@@ -16,7 +16,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 17, 2017
+  modified_date: July 20, 2017
   name: 2017-07-06-The-Alphabet-Cipher
   path: whatever
 output_extension: .md

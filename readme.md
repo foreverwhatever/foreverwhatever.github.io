@@ -16,7 +16,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: July 17, 2017
+  modified_date: July 20, 2017
   name: readme
   path: ''
 output_extension: .md

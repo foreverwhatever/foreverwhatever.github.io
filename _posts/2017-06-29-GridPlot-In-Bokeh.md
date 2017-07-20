@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 17, 2017
+  modified_date: July 20, 2017
   name: 2017-06-29-GridPlot-In-Bokeh
   path: whatever
 output_extension: .md
@@ -49,10 +49,10 @@ plotting.output_notebook()</code></pre>
 
 
 
-<div id="6de6cc88-2cc6-4e69-8795-573e9e370a32"></div>
+<div id="c500ed08-82cf-4544-b8b7-7fd965b4b46c"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6de6cc88-2cc6-4e69-8795-573e9e370a32');
+var element = $('#c500ed08-82cf-4544-b8b7-7fd965b4b46c');
 
 (function(global) {
   function now() {
