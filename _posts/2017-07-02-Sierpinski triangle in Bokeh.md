@@ -46,10 +46,10 @@ unique_key: 2017-07-02-Sierpinski triangle in Bokeh
 
 
 
-<div id="6e73a7d3-9775-4653-a8f5-8d4d0b2b6ce0"></div>
+<div id="981b6239-61fa-4406-8697-eeb6509632a1"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6e73a7d3-9775-4653-a8f5-8d4d0b2b6ce0');
+var element = $('#981b6239-61fa-4406-8697-eeb6509632a1');
 
 (function(global) {
   function now() {

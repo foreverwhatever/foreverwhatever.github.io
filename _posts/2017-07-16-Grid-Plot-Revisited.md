@@ -39,10 +39,10 @@ This notebook designs a Object Oriented/Functional API for interactive grid plot
 
 
 
-<div id="f0797625-c038-490e-8ba1-38205e2c85fb"></div>
+<div id="7eb9fd30-7ea1-43e0-9073-1217a1d4d79f"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#f0797625-c038-490e-8ba1-38205e2c85fb');
+var element = $('#7eb9fd30-7ea1-43e0-9073-1217a1d4d79f');
 
 (function(global) {
   function now() {
