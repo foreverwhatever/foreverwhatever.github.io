@@ -15,7 +15,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: July 20, 2017
+  modified_date: July 23, 2017
   name: 2017-07-20-Spinning-Pie
   path: whatever
 output_extension: .md
@@ -37,10 +37,10 @@ Experiments with pie charts and CustomJsTransform
 
 
 
-<div id="0d783de6-3421-45b5-a71e-b0c90d8704fc"></div>
+<div id="8e01a6b9-e6c0-4751-b99b-c13d19644ae7"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0d783de6-3421-45b5-a71e-b0c90d8704fc');
+var element = $('#8e01a6b9-e6c0-4751-b99b-c13d19644ae7');
 
 (function(global) {
   function now() {

@@ -15,7 +15,7 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
-  modified_date: July 20, 2017
+  modified_date: July 23, 2017
   name: gridplot
   path: whatever
 output_extension: .md
@@ -39,10 +39,10 @@ This notebook designs a Object Oriented/Functional API for interactive grid plot
 
 
 
-<div id="c5c32f6b-18e6-46b9-b417-e1ed115c001b"></div>
+<div id="823acd67-162b-4894-a1da-3c106fe0a92b"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c5c32f6b-18e6-46b9-b417-e1ed115c001b');
+var element = $('#823acd67-162b-4894-a1da-3c106fe0a92b');
 
 (function(global) {
   function now() {

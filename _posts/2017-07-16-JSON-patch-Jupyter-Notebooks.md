@@ -17,7 +17,7 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
-  modified_date: July 20, 2017
+  modified_date: July 23, 2017
   name: 2017-07-16-JSON-patch-Jupyter-Notebooks
   path: whatever
 output_extension: .md
