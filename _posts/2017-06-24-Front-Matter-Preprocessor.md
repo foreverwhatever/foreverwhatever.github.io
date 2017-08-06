@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 config_dir: /home/travis/.jupyter
+=======
+config_dir: /Users/tonyfast/.jupyter
+>>>>>>> nbd
 description: Notebook metadata as front matter.
 kernelspec:
   display_name: Python 3
@@ -17,7 +21,15 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
+<<<<<<< Updated upstream
   modified_date: July 23, 2017
+=======
+<<<<<<< HEAD
+  modified_date: July 1, 2017
+=======
+  modified_date: July 28, 2017
+>>>>>>> nbd
+>>>>>>> Stashed changes
   name: 2017-06-24-Front-Matter-Preprocessor
   path: whatever
 output_extension: .md
@@ -63,7 +75,15 @@ Append *metadata* and *resources* as front matter to a notebook; insert a markdo
 <div class="output_markdown rendered_html output_subarea ">
 
 <pre><code>    exporter = __import__('nbconvert').get_exporter('markdown')(
+<<<<<<< Updated upstream
         config={'TemplateExporter': {'preprocessors': [FrontMatter]}})</code></pre>
+=======
+<<<<<<< HEAD
+        config={'TemplateExporter': {'preprocessors': ['literacy.preprocessors.Dedent', FrontMatter]}})</code></pre>
+=======
+        config={'TemplateExporter': {'preprocessors': [FrontMatter]}})</code></pre>
+>>>>>>> nbd
+>>>>>>> Stashed changes
 
 </div>
 
@@ -88,6 +108,11 @@ language_info:
   nbconvert_exporter: python
   pygments_lexer: ipython3
   version: 3.5.3
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 layout: post
 metadata:
   modified_date: July 4, 2017
@@ -314,6 +339,10 @@ language_info:
   nbconvert_exporter: python
   pygments_lexer: ipython3
   version: 3.5.3
+<<<<<<< Updated upstream
+=======
+>>>>>>> nbd
+>>>>>>> Stashed changes
 metadata:
   modified_date: June 28, 2017
   name: 2017-06-24-Front-Matter-Preprocessor
@@ -406,6 +435,32 @@ exporter = __import__('nbconvert').get_exporter('markdown')(
 ```
 
 __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.
+<<<<<<< Updated upstream
+</code></pre><p><strong>normalize</strong> all the values of a collection to a basic <code>dict</code> type for <code>yaml.safe_load</code> to consume.
+&lt;/code&gt;&lt;/pre&gt;</p>
+
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-5-06faa1d75631&gt; in &lt;module&gt;()
+----&gt; 1 nbconvert
+
+
+NameError: name 'nbconvert' is not defined
+
+
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+</code></pre>
+<p><strong>normalize</strong> all the values of a collection to a basic <code>dict</code> type for <code>yaml.safe_load</code> to consume.
+&lt;/code&gt;&lt;/pre&gt;</p>
+
+</div>
+<<<<<<< Updated upstream
+=======
+=======
 </code></pre><p><strong>normalize</strong> all the values of a collection to a basic <code>dict</code> type for <code>yaml.safe_load</code> to consume.
 &lt;/code&gt;&lt;/pre&gt;</p>
 
@@ -425,6 +480,7 @@ NameError: name 'nbconvert' is not defined
 &lt;/code&gt;&lt;/pre&gt;</p>
 
 </div>
+>>>>>>> Stashed changes
 
 
       File "<ipython-input-5-e47d0e1bf424>", line 6
@@ -433,4 +489,8 @@ NameError: name 'nbconvert' is not defined
     SyntaxError: invalid syntax
 
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> nbd
+>>>>>>> Stashed changes
 __normalize__ all the values of a collection to a basic `dict` type for `yaml.safe_load` to consume.

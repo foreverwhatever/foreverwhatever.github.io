@@ -1,5 +1,9 @@
 ---
+<<<<<<< Updated upstream
 config_dir: /home/travis/.jupyter
+=======
+config_dir: /Users/tonyfast/.jupyter
+>>>>>>> Stashed changes
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,7 +19,11 @@ language_info:
   pygments_lexer: ipython3
   version: 3.5.3
 metadata:
+<<<<<<< Updated upstream
   modified_date: July 23, 2017
+=======
+  modified_date: July 20, 2017
+>>>>>>> Stashed changes
   name: 2017-07-20-Spinning-Pie
   path: whatever
 output_extension: .md
@@ -37,10 +45,17 @@ Experiments with pie charts and CustomJsTransform
 
 
 
+<<<<<<< Updated upstream
 <div id="8e01a6b9-e6c0-4751-b99b-c13d19644ae7"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
 var element = $('#8e01a6b9-e6c0-4751-b99b-c13d19644ae7');
+=======
+<div id="5bf66edd-f758-4f34-a29a-08eee8f15a9d"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#5bf66edd-f758-4f34-a29a-08eee8f15a9d');
+>>>>>>> Stashed changes
 
 (function(global) {
   function now() {

@@ -5,3 +5,4 @@ dist
 _site
 .jekyll-metadata
 __pycache__
+diffs

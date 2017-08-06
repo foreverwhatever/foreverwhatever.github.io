@@ -1,5 +1,9 @@
 ---
+<<<<<<< Updated upstream
 config_dir: /home/travis/.jupyter
+=======
+config_dir: /Users/tonyfast/.jupyter
+>>>>>>> Stashed changes
 description: A pre_save_hook to track notebook changes.
 kernelspec:
   display_name: Python 3
@@ -17,7 +21,11 @@ language_info:
   version: 3.5.3
 layout: post
 metadata:
+<<<<<<< Updated upstream
   modified_date: July 23, 2017
+=======
+  modified_date: July 16, 2017
+>>>>>>> Stashed changes
   name: 2017-07-16-JSON-patch-Jupyter-Notebooks
   path: whatever
 output_extension: .md
