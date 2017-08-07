@@ -11771,6 +11771,19 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-decorator-to-create-nbconvert-preprocessors.">A decorator to create nbconvert preprocessors.<a class="anchor-link" href="#A-decorator-to-create-nbconvert-preprocessors.">&#182;</a></h1><p>This notebook makes it easier to create preprocessors for <strong>nbconvert</strong>.  These should work on an existing exporter.</p>
+<ul>
+<li><a href="https://github.com/jupyter/nbconvert-examples/blob/master/custom_preprocessor/cheese_preprocessor.py">https://github.com/jupyter/nbconvert-examples/blob/master/custom_preprocessor/cheese_preprocessor.py</a></li>
+<li><a href="http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html#function-decorators">http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html#function-decorators</a></li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -11786,7 +11799,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
@@ -11799,91 +11812,321 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[252]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<ul>
+<li><p>There is a decorator that does that following</p>
+<ul>
+<li>Let's make a simple cell <code>from nbconvert.preprocessors import Preprocessor</code> that appends the cell index to the cell metadata.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<p>The basic structure of <strong>SomeNewPreProcessor</strong> is:</p>
+
+<pre><code>class SomeNewPreProcessor(Preprocessor): 
+    def preprocess(self, nb, resources={}):
+        return nb, resources
+
+    def preprocess_cell(self, nb, resources, index):
+        return nb, resources</code></pre>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[254]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+
+<pre><code>import typing</code></pre>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[255]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="The-@preprocess_cell-decorator">The <em>@preprocess_cell</em> decorator<a class="anchor-link" href="#The-@preprocess_cell-decorator">&#182;</a></h2>
+<pre><code>def preprocess_cell(f: typing.Callable[[__import__("nbformat").NotebookNode, dict, int], Preprocessor]):
+    return type(f.__name__, (Preprocessor, ), {"preprocess_cell": f})</code></pre>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[256]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="The-NumberCell-example-&#128640;">The <em>NumberCell</em> example &#128640;<a class="anchor-link" href="#The-NumberCell-example-&#128640;">&#182;</a></h3><hr>
+<p>Append the cell index to the cell metadata.</p>
+
+<pre><code>@preprocess_cell
+def NumberCell(self, cell, resources, index):
+    cell['metadata'].update(index=index)
+    return cell, resources</code></pre>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[257]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Test-NumberCell;">Test <code>NumberCell;</code><a class="anchor-link" href="#Test-NumberCell;">&#182;</a></h2>
+<pre><code>from nbconvert import export, get_exporter
+
+exporter = get_exporter('notebook')(config={
+    'Exporter': {'preprocessors': [NumberCell]}})
+
+#         print(exporter.from_filename('2017-06-25-Prepro.ipynb')[0])
+
+</code></pre>
+<hr>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lets-make-a-config-file">Lets make a config file<a class="anchor-link" href="#Lets-make-a-config-file">&#182;</a></h1><blockquote><p><del>The code is commented out so the conversion works.</del></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+
+<pre><code>#     %%file number.py
+#     c.Exporter.preprocessors = ['whatever.2017-06-25-Preprocessor.NumberCell']</code></pre>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_markdown rendered_html output_subarea ">
+
+<pre><code>if o: 
+    !jupyter nbconvert --to notebook --config number.py 2017-06-25-Preprocessor.ipynb</code></pre>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[NbConvertApp] Converting notebook 2017-06-25-Preprocessor.ipynb to notebook
+[NbConvertApp] Writing 8091 bytes to 2017-06-25-Preprocessor.nbconvert.ipynb
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
