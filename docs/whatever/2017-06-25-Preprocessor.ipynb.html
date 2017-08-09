@@ -11775,15 +11775,11 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-alphabet-cipher-challenge">The alphabet cipher challenge<a class="anchor-link" href="#The-alphabet-cipher-challenge">&#182;</a></h1><p>Created for the <a href="https://www.meetup.com/python-atlanta/events/237560615/">pyatl jam session</a></p>
-<p>Cyber dojo 👉 40A6A54C18</p>
-<hr>
+<h1 id="A-decorator-to-create-nbconvert-preprocessors.">A decorator to create nbconvert preprocessors.<a class="anchor-link" href="#A-decorator-to-create-nbconvert-preprocessors.">&#182;</a></h1><p>This notebook makes it easier to create preprocessors for <strong>nbconvert</strong>.  These should work on an existing exporter.</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/The_Alphabet_Cipher">https://en.wikipedia.org/wiki/The_Alphabet_Cipher</a></li>
+<li><a href="https://github.com/jupyter/nbconvert-examples/blob/master/custom_preprocessor/cheese_preprocessor.py">https://github.com/jupyter/nbconvert-examples/blob/master/custom_preprocessor/cheese_preprocessor.py</a></li>
+<li><a href="http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html#function-decorators">http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html#function-decorators</a></li>
 </ul>
-<p>This literate code document is written Markdown first; all code elements are executed as Python.</p>
-
-<pre><code>    !pip install git+https://github.com/tonyfast/literacy</code></pre>
 
 </div>
 </div>
@@ -11793,7 +11789,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="kn">from</span> <span class="nn">IPython</span> <span class="k">import</span> <span class="n">get_ipython</span>
 </pre></div>
 
 </div>
@@ -11806,32 +11802,12 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">o</span> <span class="o">=</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span>
+    <span class="k">if</span> <span class="n">o</span><span class="p">:</span>
+        <span class="o">%</span><span class="k">load_ext</span> literacy.template
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<p>Create the alphabet using <code>range, ord and chr</code>.</p>
-
-<pre><code>alphabet = ''.join(map(chr, range(ord('a'), ord('z')+1)))    </code></pre>
-
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -11841,7 +11817,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">*</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">decorator</span> <span class="n">that</span> <span class="n">does</span> <span class="n">that</span> <span class="n">following</span>
+
+ <span class="o">*</span> <span class="n">Let</span><span class="s1">&#39;s make a simple cell `from nbconvert.preprocessors import Preprocessor` that appends the cell index to the cell metadata.</span>
 </pre></div>
 
 </div>
@@ -11859,19 +11837,13 @@ div#notebook {
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<p>Construct the alphabet cipher and call it <strong>tabula</strong>; this table is the mapping for the encryption.</p>
-
-<pre><code>__tabula__ = [''.join([
-
-</code></pre>
-<p>Shift the alphabet by the current <strong>row</strong></p>
-
-<pre><code>    *alphabet[i:], *alphabet[:i]
-
-</code></pre>
-<p>The current row maps directly to the letter in an alphabet.</p>
-
-<pre><code>]) for i in range(26)]</code></pre>
+<ul>
+<li><p>There is a decorator that does that following</p>
+<ul>
+<li>Let's make a simple cell <code>from nbconvert.preprocessors import Preprocessor</code> that appends the cell index to the cell metadata.</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
@@ -11886,7 +11858,14 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">The</span> <span class="n">basic</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">__SomeNewPreProcessor__</span> <span class="ow">is</span><span class="p">:</span>
+
+    <span class="k">class</span> <span class="nc">SomeNewPreProcessor</span><span class="p">(</span><span class="n">Preprocessor</span><span class="p">):</span> 
+        <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="p">{}):</span>
+            <span class="k">return</span> <span class="n">nb</span><span class="p">,</span> <span class="n">resources</span>
+
+        <span class="k">def</span> <span class="nf">preprocess_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">resources</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">nb</span><span class="p">,</span> <span class="n">resources</span>
 </pre></div>
 
 </div>
@@ -11904,7 +11883,14 @@ div#notebook {
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<p><strong><code>Ł = alphabet.index</code></strong> converts a letter to an index.</p>
+<p>The basic structure of <strong>SomeNewPreProcessor</strong> is:</p>
+
+<pre><code>class SomeNewPreProcessor(Preprocessor): 
+    def preprocess(self, nb, resources={}):
+        return nb, resources
+
+    def preprocess_cell(self, nb, resources, index):
+        return nb, resources</code></pre>
 
 </div>
 
@@ -11919,7 +11905,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="kn">import</span> <span class="nn">typing</span>
 </pre></div>
 
 </div>
@@ -11937,8 +11923,8 @@ div#notebook {
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Solving-the-problem">Solving the problem<a class="anchor-link" href="#Solving-the-problem">&#182;</a></h2><p>Use <code>key = 'vigilance'</code> to <strong>encrypt</strong> <code>message = 'meetmeontuesdayeveningatseven'</code> with the 
-<strong>tabula</strong> constructed above.</p>
+
+<pre><code>import typing</code></pre>
 
 </div>
 
@@ -11953,7 +11939,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## The *@preprocess_cell* decorator</span>
+        
+    <span class="k">def</span> <span class="nf">preprocess_cell</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;nbformat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">NotebookNode</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">Preprocessor</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">Preprocessor</span><span class="p">,</span> <span class="p">),</span> <span class="p">{</span><span class="s2">&quot;preprocess_cell&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">})</span>
 </pre></div>
 
 </div>
@@ -11971,12 +11960,9 @@ div#notebook {
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<p>This cipher requires that the key and message are the same length; <strong>regularize</strong> performs this task</p>
-
-<pre><code>def regularize(key, message):
-    while len(key) &lt; len(message):
-        key += key
-    return zip(key[:len(message)], message)</code></pre>
+<h2 id="The-@preprocess_cell-decorator">The <em>@preprocess_cell</em> decorator<a class="anchor-link" href="#The-@preprocess_cell-decorator">&#182;</a></h2>
+<pre><code>def preprocess_cell(f: typing.Callable[[__import__("nbformat").NotebookNode, dict, int], Preprocessor]):
+    return type(f.__name__, (Preprocessor, ), {"preprocess_cell": f})</code></pre>
 
 </div>
 
@@ -11991,7 +11977,14 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### The *NumberCell* example 🚀</span>
+<span class="o">---</span> 
+<span class="n">Append</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">index</span> <span class="n">to</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">metadata</span><span class="o">.</span>
+
+    <span class="nd">@preprocess_cell</span>
+    <span class="k">def</span> <span class="nf">NumberCell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">resources</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">cell</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cell</span><span class="p">,</span> <span class="n">resources</span>
 </pre></div>
 
 </div>
@@ -12009,63 +12002,14 @@ div#notebook {
 
 
 <div class="output_markdown rendered_html output_subarea ">
+<h3 id="The-NumberCell-example-&#128640;">The <em>NumberCell</em> example &#128640;<a class="anchor-link" href="#The-NumberCell-example-&#128640;">&#182;</a></h3><hr>
+<p>Append the cell index to the cell metadata.</p>
 
-<pre><code>def encrypt(key, message):
-    return ''.join([
+<pre><code>@preprocess_cell
+def NumberCell(self, cell, resources, index):
+    cell['metadata'].update(index=index)
+    return cell, resources</code></pre>
 
-
-</code></pre>
-<p>Look-up the <code>message</code> character's row for it's corresponding <code>key</code>; 
-the value os the encrypted character</p>
-
-<pre><code>        __tabula__[Ł(_)][Ł(__)] for _, __ in regularize(key, message)])</code></pre>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<p><code>secret = encrypt(key, message)</code>, the <code>secret</code> <strong>encrypt</strong>ed <code>message</code> is <code>secret</code>.</p>
-
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;hmkbxebpxpmyllyrxiiqtoltfgzzv&#39;</pre>
 </div>
 
 </div>
@@ -12079,7 +12023,16 @@ the value os the encrypted character</p>
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Test `NumberCell;`</span>
+
+    <span class="kn">from</span> <span class="nn">nbconvert</span> <span class="k">import</span> <span class="n">export</span><span class="p">,</span> <span class="n">get_exporter</span>
+
+    <span class="n">exporter</span> <span class="o">=</span> <span class="n">get_exporter</span><span class="p">(</span><span class="s1">&#39;notebook&#39;</span><span class="p">)(</span><span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Exporter&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;preprocessors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">NumberCell</span><span class="p">]}})</span>
+
+    <span class="c1">#         print(exporter.from_filename(&#39;2017-06-25-Prepro.ipynb&#39;)[0])</span>
+    
+<span class="o">---</span>
 </pre></div>
 
 </div>
@@ -12097,26 +12050,16 @@ the value os the encrypted character</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Inverse-encryption-or-decryption">Inverse encryption or <strong>decrypt</strong>ion<a class="anchor-link" href="#Inverse-encryption-or-decryption">&#182;</a></h2>
-<pre><code>def decrypt(key, secret):
+<h2 id="Test-NumberCell;">Test <code>NumberCell;</code><a class="anchor-link" href="#Test-NumberCell;">&#182;</a></h2>
+<pre><code>from nbconvert import export, get_exporter
 
-    return ''.join([
-        chr([
+exporter = get_exporter('notebook')(config={
+    'Exporter': {'preprocessors': [NumberCell]}})
 
-</code></pre>
-<p><strong>pluck</strong> the <strong>key</strong> letters from each row</p>
-
-<pre><code>            row[Ł(_)] for row in __tabula__
+#         print(exporter.from_filename('2017-06-25-Prepro.ipynb')[0])
 
 </code></pre>
-<p>and find the index of the <strong>secret</strong></p>
-
-<pre><code>        ].index(__) + ord('a')) 
-
-</code></pre>
-<p>over each of the letters in the (key, secret) pairs</p>
-
-<pre><code>        for _, __ in regularize(key, secret)])</code></pre>
+<hr>
 
 </div>
 
@@ -12125,13 +12068,24 @@ the value os the encrypted character</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lets-make-a-config-file">Lets make a config file<a class="anchor-link" href="#Lets-make-a-config-file">&#182;</a></h1><blockquote><p><del>The code is commented out so the conversion works.</del></p>
+</blockquote>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="c1">#     %%file number.py</span>
+    <span class="c1">#     c.Exporter.preprocessors = [&#39;whatever.2017-06-25-Preprocessor.NumberCell&#39;]</span>
 </pre></div>
 
 </div>
@@ -12150,21 +12104,9 @@ the value os the encrypted character</p>
 
 <div class="output_markdown rendered_html output_subarea ">
 
-<pre><code>decrypt(key, secret)</code></pre>
+<pre><code>#     %%file number.py
+#     c.Exporter.preprocessors = ['whatever.2017-06-25-Preprocessor.NumberCell']</code></pre>
 
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[10]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;meetmeontuesdayeveningatseven&#39;</pre>
 </div>
 
 </div>
@@ -12178,7 +12120,8 @@ the value os the encrypted character</p>
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">if</span> <span class="n">o</span><span class="p">:</span> 
+        <span class="o">!</span>jupyter nbconvert --to notebook --config number.py <span class="m">2017</span>-06-25-Preprocessor.ipynb
 </pre></div>
 
 </div>
@@ -12196,7 +12139,9 @@ the value os the encrypted character</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<p>The secret puzzle is <code>decrypt('PYATLJAMSESSION'.lower(), 'LFAMTBTTWEAJADRTBVXWXCULCGXIBHCJAWPWSISPDGE'.lower())</code></p>
+
+<pre><code>if o: 
+    !jupyter nbconvert --to notebook --config number.py 2017-06-25-Preprocessor.ipynb</code></pre>
 
 </div>
 
@@ -12204,33 +12149,19 @@ the value os the encrypted character</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;whatistheairspeedvelocityofanunladenswallow&#39;</pre>
-</div>
-
-</div>
-
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[NbConvertApp] Converting notebook 2017-06-25-Preprocessor.ipynb to notebook
+[NbConvertApp] Writing 8091 bytes to 2017-06-25-Preprocessor.nbconvert.ipynb
+</pre>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h1 id="Example-lookup">Example lookup<a class="anchor-link" href="#Example-lookup">&#182;</a></h1>
-<pre><code>v i g i l a n c e v i g i l a n c e v i g i l a n c e v i
-m e e t m e o n t u e s d a y e v e n i n g a t s e v e n
-h m k b x e b p x p m y l l y r x i i q t o l t f g z z v</code></pre>
 
-</div>
-</div>
 </div>
     </div>
   </div>

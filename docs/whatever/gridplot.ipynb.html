@@ -11786,7 +11786,13 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="o">%</span><span class="k">reload_ext</span> literacy.literate
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">from</span> <span class="nn">bokeh</span> <span class="k">import</span> <span class="n">plotting</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">layouts</span><span class="p">,</span> <span class="n">resources</span>
+    <span class="kn">from</span> <span class="nn">operator</span> <span class="k">import</span> <span class="n">gt</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="n">eq</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+    <span class="kn">from</span> <span class="nn">coffeetools</span> <span class="k">import</span> <span class="n">coffee</span>
+    <span class="n">plotting</span><span class="o">.</span><span class="n">output_notebook</span><span class="p">(</span><span class="n">resources</span><span class="o">=</span><span class="n">resources</span><span class="o">.</span><span class="n">INLINE</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11821,10 +11827,10 @@ div#notebook {
 
 
 
-<div id="66fa72b9-edbb-46ee-bde1-c8dcfab77ac2"></div>
+<div id="0e26eadd-ec24-40db-87e6-7255bad67f2c"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
+var element = $('#0e26eadd-ec24-40db-87e6-7255bad67f2c');
 
 (function(global) {
   function now() {
@@ -12485,7 +12491,7 @@ var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12519,7 +12525,11 @@ var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">glyph</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;default glyph settings for the gridplot&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">spec</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="p">{</span><span class="n">models</span><span class="o">.</span><span class="n">Marker</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{row}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{column}</span><span class="s1">&#39;</span><span class="p">}}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>  <span class="k">return</span> <span class="n">kwargs</span>
+        <span class="k">return</span> <span class="p">{}</span>
 </pre></div>
 
 </div>
@@ -12566,7 +12576,21 @@ var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">glyph</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">add_glyph</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">glyph</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span> <span class="ow">and</span> <span class="bp">self</span>
+        
+        <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                        <span class="k">yield</span> <span class="n">_</span><span class="p">,</span> <span class="n">__</span>
+
+        <span class="k">def</span> <span class="nf">_prepare_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 </pre></div>
 
 </div>
@@ -12623,7 +12647,25 @@ var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">class</span> <span class="nc">Triangle</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">figures</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">controls</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span> <span class="o">=</span> <span class="n">figures</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">controls</span>
+                                                            
+        <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">glyph</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="n">default</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">glyph</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__call__</span>
+        
+        <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__dir__</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">models</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Glyph</span><span class="p">)]</span>
+        
+        <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">],</span> 
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="n">column</span> <span class="k">if</span> <span class="n">row</span><span class="o">==</span><span class="n">column</span> <span class="k">else</span> <span class="s1">&#39;_source_&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">glyph</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_prepare_kwargs</span><span class="p">(</span>
+                        <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}))</span>
+            <span class="k">return</span> <span class="bp">self</span>
 </pre></div>
 
 </div>
@@ -12684,7 +12726,9 @@ var element = $('#66fa72b9-edbb-46ee-bde1-c8dcfab77ac2');
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">class</span> <span class="nc">Diagonal</span><span class="p">(</span><span class="n">Triangle</span><span class="p">):</span> <span class="nb">cmp</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">Upper</span><span class="p">(</span><span class="n">Triangle</span><span class="p">):</span> <span class="nb">cmp</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">Lower</span><span class="p">(</span><span class="n">Triangle</span><span class="p">):</span> <span class="nb">cmp</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">lt</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12720,7 +12764,11 @@ class Lower(Triangle): cmp = staticmethod(lt)</code></pre>
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">def</span> <span class="nf">categorize</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">11</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Preliminary categorization diagonal data.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">,</span> <span class="n">nbins</span><span class="p">))</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12758,7 +12806,53 @@ class Lower(Triangle): cmp = staticmethod(lt)</code></pre>
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="k">class</span> <span class="nc">GridPlot</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sources</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_source_&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">plotting</span><span class="o">.</span><span class="n">ColumnDataSource</span><span class="p">)}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span> <span class="ow">or</span> <span class="p">[</span>
+                <span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s1">&#39;_source_&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">column_names</span> <span class="k">if</span> <span class="n">_</span> <span class="o">!=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s1">&#39;index&#39;</span><span class="p">)]</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_figures</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_controls</span><span class="p">()</span>
+            
+        <span class="k">def</span> <span class="nf">_init_controls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">controls</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="o">=</span> <span class="n">categorize</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s1">&#39;_source_&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">_</span><span class="p">])</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">plotting</span><span class="o">.</span><span class="n">ColumnDataSource</span><span class="p">)</span>
+                
+                <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> 
+                    <span class="n">step</span><span class="o">=</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s1">&#39;_source_&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">_</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s1">&#39;_source_&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">_</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+                    <span class="p">)</span><span class="o">/</span><span class="mi">11</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">_</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+            
+        <span class="k">def</span> <span class="nf">_init_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">figures</span> <span class="o">=</span> <span class="p">{</span><span class="n">__</span><span class="p">:</span> <span class="p">{</span><span class="n">_</span><span class="p">:</span> <span class="n">plotting</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+                    
+        
+        <span class="k">def</span> <span class="nf">_link_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">row</span> <span class="o">!=</span> <span class="n">column</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">y_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">column</span><span class="p">][</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">x_range</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">x_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">x_range</span>
+        
+        <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_link_axes</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">plotting</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">layouts</span><span class="o">.</span><span class="n">gridplot</span><span class="p">([</span>
+                <span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">[</span><span class="n">_</span><span class="p">][</span><span class="n">__</span><span class="p">]</span> <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+                <span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+            <span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">)))</span>
+        
+    <span class="k">def</span> <span class="nf">_slice_</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="nd">@property</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">controls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_slice</span>
+
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Diagonal</span><span class="p">,</span> <span class="n">Upper</span><span class="p">,</span> <span class="n">Lower</span><span class="p">]:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">GridPlot</span><span class="p">,</span> <span class="n">attr</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">_slice_</span><span class="p">(</span><span class="n">attr</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12838,7 +12932,12 @@ for attr in [Diagonal, Upper, Lower]:
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="s1">&#39;_source_&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">([[</span><span class="s1">&#39;violet&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">%</span><span class="k">3</span>]for i in range(len(df))], &#39;color&#39;)
+    <span class="n">grid</span><span class="o">.</span><span class="n">diagonal</span><span class="o">.</span><span class="n">Quad</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">upper</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">lower</span><span class="o">.</span><span class="n">X</span><span class="p">()</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 </div>
