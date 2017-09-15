@@ -1,0 +1,6 @@
+[submodule "forever-whatever"]
+	path = forever-whatever
+	url = https://github.com/tonyfast/forever-whatever
+[submodule "wip"]
+	path = wip
+	url = https://github.com/tonyfast/wip
